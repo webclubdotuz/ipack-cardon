@@ -27,11 +27,6 @@ class Press extends Model
         return $this->hasOne(Sale::class);
     }
 
-    public function saleItems()
-    {
-        return $this->hasMany(SaleItem::class);
-    }
-
     public function users()
     {
         return $this->hasMany(PressUser::class, 'press_id');

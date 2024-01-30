@@ -92,13 +92,6 @@ function getMyProducts()
     })->orderBy('name')->get();
 }
 
-// warehouse_presses
-function warehouse_presses($product_id)
-{
-    // sales table has no press_id
-    return \App\Models\Press::where('product_id', $product_id)->doesntHave('saleItems')->get();
-}
-
 function transaction_products($transaction_id)
 {
     $product_ids = \App\Models\Sale::where('transaction_id', $transaction_id)->groupBy('product_id')->pluck('product_id');

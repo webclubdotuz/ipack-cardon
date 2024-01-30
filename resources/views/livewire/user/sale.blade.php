@@ -19,7 +19,6 @@
                     <th>Поставщик</th>
                     <th>Товары</th>
                     <th>Сумма</th>
-                    <th>Стаус</th>
                     <th>Оплата стаус</th>
                     <th>Дата</th>
                     <th></th>
@@ -40,18 +39,9 @@
                                     </div>
                                     <div>
                                         <a data-bs-toggle="dropdown" class="text-primary">
-                                            {{ nf($sales->count) }} шт/{{ nf($sales->quantity, 2) }} кг / <span
-                                                class="text-danger">{{ nf($sales->loss) }} кг</span>
+                                            {{ nf($sales->quantity) }} {{ $sales->product->unit }} | {{ nf($sales->total) }} cум
                                         </a>
-                                        <div class="dropdown-menu p-2">
-                                            @foreach ($sales->saleItems as $saleItem)
-                                                @if ($loop->iteration == 1)
-                                                    {{ nf($saleItem->quantity, 2) }}
-                                                @else
-                                                    + {{ nf($saleItem->quantity, 2) }}
-                                                @endif
-                                            @endforeach
-                                        </div>
+
                                     </div>
                                 </div>
                             @endforeach
@@ -59,9 +49,6 @@
                         <td>{{ nf($transaction->total, 2) }} {{ $transaction->debt_info }}</td>
                         <td>
                             {!! $transaction->status_html !!}
-                        </td>
-                        <td>
-                            {!! $transaction->payment_status_html !!}
                         </td>
                         <td>{{ df($transaction->created_at, 'd.m.Y H:i') }}</td>
                         <td>

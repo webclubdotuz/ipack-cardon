@@ -19,7 +19,6 @@
 					<th>Поставщик</th>
 					<th>Товары</th>
 					<th>Сумма</th>
-					<th>Стаус</th>
 					<th>Дата</th>
                     <th></th>
 				</tr>
@@ -55,9 +54,6 @@
                             @endforeach
                         </td>
 						<td>{{ nf($transaction->total, 2) }} {{ $transaction->debt_info }}</td>
-                        <td>
-                            {!! $transaction->payment_status_html !!}
-                        </td>
 						<td>{{ df($transaction->created_at, 'd.m.Y H:i') }}</td>
                         <td>
                             @if(hasRoles() || $transaction->user_id == $user->id)
