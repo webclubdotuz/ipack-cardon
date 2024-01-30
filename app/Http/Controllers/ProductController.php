@@ -35,6 +35,7 @@ class ProductController extends Controller
             'price'=> $request->price,
             'quantity'=> 0,
             'description'=> $request->description,
+            'shop'=> $request->shop,
         ]);
 
         return redirect()->route('products.index')->with('success','Продукт успешно добавлен');
@@ -63,6 +64,7 @@ class ProductController extends Controller
             'name'=> $request->name,
             'price'=> $request->price,
             'description'=> $request->description,
+            'shop'=> $request->shop,
         ]);
 
         return redirect()->route('products.index')->with('success','Продукт успешно обновлен');
