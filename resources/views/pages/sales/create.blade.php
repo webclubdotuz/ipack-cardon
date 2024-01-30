@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <a type="button" id="add-product" onclick="return false;" class="text-primary  float-start"><i class="bx bx-plus"></i> Добавить рулон</a> <br>
+                            <a type="button" id="add-product" onclick="return false;" class="text-primary  float-start"><i class="bx bx-plus"></i> Добавить продукт</a>
                             <hr>
                         </div>
                         <div class="col-md-6">
