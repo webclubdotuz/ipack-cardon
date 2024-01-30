@@ -7,14 +7,14 @@
                     <li class="nav-item">
                         <div class="dropdown open">
                             <button class="btn btn-success btn-sm" type="button" data-bs-toggle="dropdown">
-                                Покупки
+                                <i class='bx bx-down-arrow-circle'></i> Покупки
                             </button>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu dropdown-menu-end">
                                 <a class="btn btn-success btn-sm m-1" href="{{ route('purchases.create') }}">
-                                    <i class='bx bx-down-arrow-circle'></i> Покупки
+                                    <i class='bx bx-down-arrow-circle'></i> Продукты
                                 </a>
-                                <a class="btn btn-success btn-sm m-1" href="{{ route('purchases.create') }}">
-                                    <i class='bx bx-down-arrow-circle'></i> Покупки
+                                <a class="btn btn-success btn-sm m-1" href="{{ route('rolls.create') }}">
+                                    <i class='bx bx-down-arrow-circle'></i> Рулоны
                                 </a>
                             </div>
                         </div>

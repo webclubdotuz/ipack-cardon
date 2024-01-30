@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Purchase;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Services\PaymentService;
 use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
@@ -61,10 +62,12 @@ class PurchaseController extends Controller
                 'total' => $transaction->purchases->sum('total'),
             ]);
 
+            $payment = new PaymentService();
+            $payment->create($transaction->id, $request->amount, $request->method, $request->description);
 
             DB::commit();
 
-            return redirect()->route('purchases.index')->with('success', 'Покупка успешно добавлена');
+            return redirect()->back()->with('success', 'Покупка успешно добавлена');
 
         } catch (\Exception $e) {
             DB::rollBack();

@@ -4,7 +4,7 @@
     <link href="{{ asset('assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
 @endpush
 @section('content')
-    <x-breadcrumb :title="'Покупка'">
+    <x-breadcrumb :title="'Покупка рулонов'">
         <a href="{{ route('purchases.index') }}" class="btn btn-sm btn-primary">
             <i class="bx bx-list-ul"></i>
             Список покупок
