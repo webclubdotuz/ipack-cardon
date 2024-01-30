@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('name')->get();
-        $roll_count = Roll::orderBy('name')->count();
+        $roll_count = Roll::orderBy('name')->where('used', 0)->count();
 
         return view('pages.products.index', compact('products', 'roll_count'));
     }
