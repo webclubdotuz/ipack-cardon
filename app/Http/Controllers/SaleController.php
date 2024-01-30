@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Transaction;
+use App\Services\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -59,6 +60,8 @@ class SaleController extends Controller
                 'total' => $transaction->sales->sum('total'),
             ]);
 
+            $payment = new PaymentService();
+            $payment->create($transaction->id, $request->amount, $request->method, $request->description);
 
             DB::commit();
 

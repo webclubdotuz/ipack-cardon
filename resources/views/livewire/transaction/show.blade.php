@@ -93,8 +93,6 @@
                                                 <th>Цена</th>
                                                 <th>Кол-в</th>
                                                 <th>Сумма</th>
-                                                <th>Чистая кол-в</th>
-                                                <th>Убытки</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -104,8 +102,6 @@
                                                     <td>{{ nf($sale->price) }}</td>
                                                     <td>{{ nf($sale->quantity, 2) }} кг</td>
                                                     <td>{{ nf($sale->total,2) }}</td>
-                                                    <td>{{ nf($sale->quantity_clean, 2) }} кг</td>
-                                                    <td>{{ nf($sale->loss, 2) }} кг</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -113,10 +109,8 @@
                                             <tr>
                                                 <th>Итого</th>
                                                 <th></th>
-                                                <th>{{ nf($transaction->quantity, 2) }} кг</th>
+                                                <th>{{ nf($transaction->sales->sum('quantity'), 2) }}</th>
                                                 <th>{{ nf($transaction->total) }}</th>
-                                                <th>{{ nf($transaction->quantity_clean, 2) }} кг</th>
-                                                <th>{{ nf($transaction->loss, 2) }} кг</th>
                                             </tr>
                                         </tfoot>
                                     </table>

@@ -48,7 +48,7 @@
                         </td>
                         <td>{{ nf($transaction->total, 2) }} {{ $transaction->debt_info }}</td>
                         <td>
-                            {!! $transaction->status_html !!}
+                            {!! $transaction->payment_status_html !!}
                         </td>
                         <td>{{ df($transaction->created_at, 'd.m.Y H:i') }}</td>
                         <td>
