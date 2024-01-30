@@ -3,11 +3,11 @@
         <div class="row g-2">
             <div class="col-6">
                 <label for="start_date">Начало периода</label>
-                <input type="date" class="form-control" id="start_date" wire:model="start_date">
+                <input type="date" class="form-control" id="start_date" wire:model.live="start_date">
             </div>
             <div class="col-6">
                 <label for="end_date">Конец периода</label>
-                <input type="date" class="form-control" id="end_date" wire:model="end_date">
+                <input type="date" class="form-control" id="end_date" wire:model.live="end_date">
             </div>
         </div>
     </div>

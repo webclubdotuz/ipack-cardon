@@ -1,4 +1,9 @@
 <div class="row g-2">
+    <div class="col-12" wire:loading>
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status"></div>
+        </div>
+    </div>
     <div class="col-12">
         <div class="row g-2">
             <div class="col-6">
@@ -15,35 +20,28 @@
 		<table class="table table-striped table-bordered" id="table">
 			<thead>
 				<tr>
-					<th>#</th>
+					<th>ID</th>
 					<th>Создатель</th>
-					<th>Сумма</th>
+                    <th>Кол-во</th>
+                    <th>Описание</th>
 					<th>Дата</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($expenses as $expense)
-					<tr>
-						<td>{{ $loop->iteration }}</td>
-						<td>{{ $expense->user->fullname }}</td>
-						<td>
-                            {{ nf($expense->amount, 2) }} сум
-						</td>
-						<td>{{ df($expense->created_at, 'd.m.Y H:i') }}</td>
-					</tr>
-				@endforeach
+                @foreach ($manufactures as $manufacture)
+                    <tr>
+                        <td>{{ $manufacture->id }}</td>
+                        <td>{{ $manufacture->user->fullname }}</td>
+                        <td>{{ nf($manufacture->quantity) }}</td>
+                        <td>{{ $manufacture->description }}</td>
+                        <td>{{ df($manufacture->created_at) }}</td>
+                    </tr>
+                @endforeach
 			</tbody>
-            <tfoot>
-                <tr>
-                    <th>Итого</th>
-                    <th></th>
-                    <th>{{ nf($expenses->sum('amount'), 2) }} сум</th>
-                    <th></th>
-                </tr>
-            </tfoot>
 		</table>
 	</div>
 </div>
+
 @push('js')
 
 @endpush

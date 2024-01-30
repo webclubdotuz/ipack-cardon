@@ -66,6 +66,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{product}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('destroy');
     });
 
+    // ProductUsed
+    Route::group(['prefix' => 'product-used', 'as' => 'product-used.'], function () {
+        Route::get('/', [\App\Http\Controllers\ProductUsedController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\ProductUsedController::class, 'create'])->name('create');
+        Route::post('/store', [\App\Http\Controllers\ProductUsedController::class, 'store'])->name('store');
+        Route::delete('/{product_used}', [\App\Http\Controllers\ProductUsedController::class, 'destroy'])->name('destroy');
+    });
+
     // Purchases
     Route::group(['prefix' => 'purchases', 'as' => 'purchases.'], function () {
         Route::get('/', [\App\Http\Controllers\PurchaseController::class, 'index'])->name('index');

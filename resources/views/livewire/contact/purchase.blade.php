@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-4">
                 <label for="date_from">Дата от</label>
-                <input type="date" class="form-control" id="date_from" wire:model="start_date">
+                <input type="date" class="form-control" id="date_from" wire:model.live="start_date">
             </div>
             <div class="col-4">
                 <label for="date_to">Дата до</label>
-                <input type="date" class="form-control" id="date_to" wire:model="end_date">
+                <input type="date" class="form-control" id="date_to" wire:model.live="end_date">
             </div>
         </div>
     </div>
