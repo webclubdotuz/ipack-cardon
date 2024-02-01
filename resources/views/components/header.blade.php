@@ -38,14 +38,6 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <h6 class="dropdown-header">
-                        <?php $user_balance = Auth::user()->balance; ?>
-                        Баланс: <br><span class="{{ $user_balance < 0 ? 'text-danger' : 'text-success' }}">{{ nf(Auth::user()->balance) }} сум</span>
-                        </h6>
-
-                    </li>
-
                     <li><a class="dropdown-item" href="{{ route('users.my-profile') }}"><i class="bx bx-user"></i><span>Profile</span></a></li>
                     <li>
                         <div class="dropdown-divider mb-0"></div>
