@@ -11,12 +11,16 @@
         <div class="col-md-4">
             <x-widgets.static-widget :title="'Долг поставщиков'" :value="nf($purchase_debt_sum)" :icon="'bx bx-money'" :route="route('contacts.suppliers')" />
         </div>
+
         <div class="col-md-4">
             <x-widgets.static-widget :title="'Покупки'" :value="nf($purchase_sum)" :icon="'bx bx-money'" :route="route('purchases.index')" />
         </div>
+
         <div class="col-md-4">
             <x-widgets.static-widget :title="'Продажи'" :value="nf($sale_sum)" :icon="'bx bx-money'" :route="route('sales.index')" />
         </div>
+        {{--
+        <!--
 
         <div class="col-md-6">
             <x-charts.multi-line-chart :id="'multiple-line-chart'" :title="'График покуки'" :labels="$dateRange" :series="$series" />
@@ -174,5 +178,6 @@
                 </div>
             </div>
         </div>
+        --> --}}
     </div>
 @endsection

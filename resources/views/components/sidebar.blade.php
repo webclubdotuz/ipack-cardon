@@ -92,6 +92,20 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-chart'></i>
+                </div>
+                <div class="menu-title">Отчеты</div>
+            </a>
+            <ul>
+                <li><a href="{{ route('reports.opiu') }}"><i class="bx bx-chart"></i> ОПиУ и Вал.прибыль</a></li>
+                <li><a href="{{ route('reports.odds') }}"><i class="bx bx-chart"></i> ОДДС</a></li>
+                <li><a href="{{ route('reports.daxod') }}"><i class="bx bx-chart"></i> Доходы</a></li>
+                <li><a href="{{ route('reports.expense') }}"><i class="bx bx-chart"></i> Расходы</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cog'></i>
                 </div>
                 <div class="menu-title">Администрирование</div>

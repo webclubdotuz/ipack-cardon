@@ -124,5 +124,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{expense}', [\App\Http\Controllers\ExpenseController::class, 'destroy'])->name('destroy');
     });
 
+    // Reports
+    Route::group(['prefix' => 'reports', 'as' => 'reports.'], function () {
+        Route::get('/opiu', [\App\Http\Controllers\ReportController::class, 'opiu'])->name('opiu');
+        Route::get('/odds', [\App\Http\Controllers\ReportController::class, 'odds'])->name('odds');
+        Route::get('/daxod', [\App\Http\Controllers\ReportController::class, 'daxod'])->name('daxod');
+        Route::get('/expense', [\App\Http\Controllers\ReportController::class, 'expense'])->name('expense');
+    });
+
 });
 
