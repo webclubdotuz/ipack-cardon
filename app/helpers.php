@@ -172,5 +172,15 @@ function contactCount()
     return \App\Models\Contact::count();
 }
 
+function methods()
+{
+    return [
+        'cash' => 'Наличные',
+        'card' => 'Карта',
+        'Click' => 'Click',
+        'transfer' => 'Перевод',
+    ];
+}
+
 
 ?>

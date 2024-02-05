@@ -23,7 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('transaction_id')->nullable();
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
 
-            $table->string('amount');
+            $table->decimal('amount', 10, 2);
+            $table->char('method', 10)->default('cash');
             $table->string('description')->nullable();
             $table->timestamps();
         });

@@ -22,7 +22,7 @@
             <div class="card-body row g-2">
                 <div class="col-md-12">
                     <div class="row g-2">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             {{ Form::label('expense_category_id', 'Категория расхода') }}
                             {{-- {{ Form::select('expense_category_id',array(''=>'Выберите') + getExpenseCategories()->pluck('name', 'id')->toArray(), null, ['class' => 'form-control select2', 'required']) }} --}}
                             <select name="expense_category_id" id="expense_category_id" class="form-control select2" required>
@@ -32,9 +32,13 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             {{ Form::label('amount', 'Сумма') }}
                             {{ Form::text('amount', null, ['class' => 'form-control money', 'required']) }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ Form::label('method', 'Метод оплаты') }}
+                            {{ Form::select('method', methods(), null, ['class' => 'form-control', 'required']) }}
                         </div>
                         <div class="col-md-12 d-none" id="user_id_div">
                             {{ Form::label('to_user_id', 'Пользователь') }}
