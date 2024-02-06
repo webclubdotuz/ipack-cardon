@@ -19,6 +19,13 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('requests.index') }}">
+                <div class="parent-icon"><i class='bx bx-list-ul'></i>
+                </div>
+                <div class="menu-title">Заявки</div>
+            </a>
+        </li>
+        <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='lni lni-users'></i>
                 </div>

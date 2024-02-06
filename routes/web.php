@@ -132,5 +132,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/expense', [\App\Http\Controllers\ReportController::class, 'expense'])->name('expense');
     });
 
+    // Requests
+    Route::resource('requests', \App\Http\Controllers\RequestController::class);
+
 });
 
