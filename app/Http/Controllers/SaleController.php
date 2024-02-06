@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use App\Models\Request as ModelsRequest;
 use App\Models\Transaction;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
@@ -62,6 +63,17 @@ class SaleController extends Controller
 
             $payment = new PaymentService();
             $payment->create($transaction->id, $request->amount, $request->method, $request->description);
+
+            if ($request->request_id)
+            {
+                $request = ModelsRequest::findOrFail($request->request_id);
+                $request->update([
+                    'status' => 'approved',
+                    'transaction_id' => $transaction->id,
+                ]);
+            }
+
+
 
             DB::commit();
 

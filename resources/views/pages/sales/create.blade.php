@@ -62,9 +62,9 @@
                         </div>
                         <div class="col-md-6">
                             <label for="contact_id">Клиент</label>
-                            <select name="contact_id" id="contact_id" class="form-control form-control-sm" required>
+                            <select name="contact_id" id="contact_id" class="form-control form-control-sm" required onchange="getRequest(this.value)">
                                 <option value="">Выберите клиента</option>
-                            @foreach (getContacts(['client', 'both']) as $supplier)
+                                @foreach (getContacts(['client', 'both']) as $supplier)
                                     <option value="{{ $supplier->id }}">{{ $supplier->fullname }}</option>
                                 @endforeach
                             </select>
@@ -80,6 +80,12 @@
                                 <option value="cash">Наличные</option>
                                 <option value="card">Карта</option>
                                 <option value="transfer">Перевод</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6" id="request-div" style="display: none;">
+                            <label for="request_id">Заявка</label>
+                            <select name="request_id" id="request_id" class="form-control form-control-sm">
+                                <option value="">Выберите заявку</option>
                             </select>
                         </div>
                         <div class="col-12">
@@ -183,6 +189,31 @@
                     $('#unit_' + index).text(response.unit);
                     $('#quantity_' + index).attr('max', response.quantity);
                     calculateTotal();
+                }
+            });
+        }
+
+        function getRequest(contact_id)
+        {
+            $.ajax({
+                url: '/api/request/' + contact_id,
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.length > 0) {
+                        $('#request-div').show();
+                        $('#request_id').empty();
+                        $('#request_id').append('<option value="">Выберите заявку</option>');
+                        response.forEach(element => {
+                            $('#request_id').append('<option value="' + element.id + '">' + element.description + '</option>');
+                        });
+
+                        $('#request_id').attr('required', true);
+
+                    } else {
+                        $('#request-div').hide();
+                        $('#request_id').attr('required', false);
+                    }
                 }
             });
         }
