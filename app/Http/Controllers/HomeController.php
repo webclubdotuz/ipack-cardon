@@ -39,45 +39,57 @@ class HomeController extends Controller
             ->where('status', 'completed')
             ->sum('total');
 
-            $dateRange = [];
-            for ($date = $start_date; $date->lte($end_date); $date->addDay()) {
-                $dateRange[] = $date->format('Y-m-d');
-            }
+        $dateRange = [];
+        for ($date = $start_date; $date->lte($end_date); $date->addDay()) {
+            $dateRange[] = $date->format('Y-m-d');
+        }
 
-            $payments = \App\Models\Payment::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
-                ->whereHas('transaction', function ($query) {
-                    $query->where('type', 'sale');
-                })
-                ->groupBy('date')
-                ->selectRaw('date(created_at) as date, sum(amount) as sum')
-                ->get();
+        $payments = \App\Models\Payment::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->whereHas('transaction', function ($query) {
+                $query->where('type', 'sale');
+            })
+            ->groupBy('date')
+            ->selectRaw('date(created_at) as date, sum(amount) as sum')
+            ->get();
 
-            // dd($payments);
+        // dd($payments);
 
-            $paymentLabels = [];
-            $paymentData = [];
-            foreach ($dateRange as $date) {
-                foreach ($payments as $payment) {
-                    if ($date == $payment->date) {
-                        $paymentLabels[] = $date;
-                        $paymentData[] = $payment->sum;
-                    }
-                    else {
-                        $paymentLabels[] = $date;
-                        $paymentData[] = 0;
-                    }
+        $paymentLabels = [];
+        $paymentData = [];
+        foreach ($dateRange as $date) {
+            foreach ($payments as $payment) {
+                if ($date == $payment->date) {
+                    $paymentLabels[] = $date;
+                    $paymentData[] = $payment->sum;
+                } else {
+                    $paymentLabels[] = $date;
+                    $paymentData[] = 0;
                 }
             }
+        }
 
-            // dd($paymentLabels, $paymentData);
+        // dd($paymentLabels, $paymentData);
 
-            $payment_methods = \App\Models\Payment::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
-                ->whereHas('transaction', function ($query) {
-                    $query->where('type', 'sale');
-                })
-                ->groupBy('method')
-                ->selectRaw('method, sum(amount) as sum')
-                ->get();
+        $payment_methods = \App\Models\Payment::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->whereHas('transaction', function ($query) {
+                $query->where('type', 'sale');
+            })
+            ->groupBy('method')
+            ->selectRaw('method, sum(amount) as sum')
+            ->get();
+
+        $manufactures = \App\Models\Manufacture::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->groupBy('product_id')
+            ->selectRaw('product_id, sum(quantity) as quantity')
+            ->get();
+
+        $manufactureLabels = [];
+        $manufactureData = [];
+
+        foreach ($manufactures as $manufacture) {
+            $manufactureLabels[] = $manufacture->product->name;
+            $manufactureData[] = $manufacture->quantity;
+        }
 
 
         return view('home', compact(
@@ -88,7 +100,10 @@ class HomeController extends Controller
             'sale_sum',
             'paymentLabels',
             'paymentData',
-            'payment_methods'
+            'payment_methods',
+            'manufactureLabels',
+            'manufactureData',
+            'manufactures'
         ));
     }
 }

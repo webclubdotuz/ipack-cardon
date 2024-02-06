@@ -51,4 +51,33 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <x-charts.column :title="'Производство'" :labels="$manufactureLabels" :data="$manufactureData" />
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body table-responsive">
+                    <h3>Продажи</h3>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th>Поступление</th>
+                                <th>{{ nf($manufactures->sum('quantity')) }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($manufactures as $manufactures)
+                                <tr>
+                                    <td>{{ $manufactures->product->name }}</td>
+                                    <td>{{ nf($manufactures->quantity) }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
