@@ -39,7 +39,7 @@
 			categories: {!! json_encode($labels) !!}
 		},
 		title: {
-			text: 'Доходы',
+			text: "{{ $title }}",
 			align: 'left',
 			style: {
 				fontSize: "16px",
