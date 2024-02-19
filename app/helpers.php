@@ -141,9 +141,7 @@ function getSalary($user_id, $product_id)
 
 function getSalarySumma($user_id)
 {
-    $salary_summa =  \App\Models\Sale::where('user_id', $user_id)->whereHas('transaction', function ($query) {
-        $query->where('type', 'sale')->whereIn('status', ['transport', 'completed']);
-    })->sum('user_salary');
+    $salary_summa =  0;
 
     return $salary_summa;
 }
@@ -157,7 +155,7 @@ function getSalaryModelSumma($user_id)
 
 function getPressSumma($user_id)
 {
-    $press_summa =  \App\Models\PressUser::where('user_id', $user_id)->sum('amount');
+    $press_summa =  0;
 
     return $press_summa;
 }

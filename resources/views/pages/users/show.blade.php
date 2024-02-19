@@ -49,7 +49,7 @@
                         <x-tab.li :id="'press'" :title="'Пресс'" :icon="'bx bx-layer'" />
                         <x-tab.li :id="'sales'" :title="'Продажи'" :icon="'bx bx-cart'" />
                         <x-tab.li :id="'sales_salary'" :title="'Продажи зарплаты'" :icon="'bx bx-money'" />
-                        <x-tab.li :id="'press_salary'" :title="'Пресс зарплаты'" :icon="'bx bx-money'" />
+                        {{-- <x-tab.li :id="'press_salary'" :title="'Пресс зарплаты'" :icon="'bx bx-money'" /> --}}
                         <x-tab.li :id="'expenses'" :title="'Расходы'" :icon="'bx bx-money'" />
                         <x-tab.li :id="'salary'" :title="'Зарплаты расходы'" :icon="'bx bx-money'" />
                     </x-tab.nav>
@@ -58,18 +58,18 @@
                         <x-tab.content :id="'purchases'" :active="true">
                             @livewire('user.purchase', ['user' => $user])
                         </x-tab.content>
-                        <x-tab.content :id="'press'">
+                        {{-- <x-tab.content :id="'press'">
                             @livewire('user.press', ['user' => $user])
-                        </x-tab.content>
+                        </x-tab.content> --}}
                         <x-tab.content :id="'sales'">
                             @livewire('user.sale', ['user' => $user])
                         </x-tab.content>
                         <x-tab.content :id="'sales_salary'">
                             @livewire('user.sale-salary', ['user' => $user])
                         </x-tab.content>
-                        <x-tab.content :id="'press_salary'">
+                        {{-- <x-tab.content :id="'press_salary'">
                             @livewire('user.pres-user', ['user' => $user])
-                        </x-tab.content>
+                        </x-tab.content> --}}
                         <x-tab.content :id="'expenses'">
                             @livewire('user.expense', ['user' => $user])
                         </x-tab.content>
