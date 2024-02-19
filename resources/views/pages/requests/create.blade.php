@@ -5,8 +5,8 @@
 	<link href="/assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
 @endpush
 @section('content')
-<x-breadcrumb :title="'Создание расходной категории'">
-    <a href="{{ route('expense-categories.index') }}" class="btn btn-sm btn-primary">
+<x-breadcrumb :title="'Заявки'">
+    <a href="{{ route('requests.index') }}" class="btn btn-sm btn-primary">
         <i class="bx bx-list-ul"></i>
         Список
     </a>

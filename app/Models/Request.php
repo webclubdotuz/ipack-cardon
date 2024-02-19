@@ -11,6 +11,8 @@ class Request extends Model
 
     protected $fillable = [
         'contact_id',
+        'cardon_id',
+        'quantity',
         'user_id',
         'deadline',
         'description',
@@ -21,6 +23,11 @@ class Request extends Model
     public function contact()
     {
         return $this->belongsTo(Contact::class);
+    }
+
+    public function cardon()
+    {
+        return $this->belongsTo(Cardon::class);
     }
 
     public function user()

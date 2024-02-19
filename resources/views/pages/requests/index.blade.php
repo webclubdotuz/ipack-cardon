@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<x-breadcrumb :title="'Расходные категории'">
+<x-breadcrumb :title="'Заявки'">
     <a href="{{ route('requests.create') }}" class="btn btn-sm btn-primary">
         <i class="bx bx-plus"></i>
         Добавить
@@ -39,6 +39,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Клиент</th>
+                                <th>Кардон</th>
+                                <th>Количество</th>
                                 <th>Описание</th>
                                 <th>Срок</th>
                                 <th>Статус</th>
@@ -51,9 +53,12 @@
                             <tr>
                                 <td>{{ $request->id }}</td>
                                 <td>{{ $request->contact->fullname }}</td>
+                                <td>{{ $request->cardon->name }}</td>
+                                <td>{{ $request->quantity }}</td>
                                 <td>{{ $request->description }}</td>
                                 <td>{{ df($request->deadline) }}</td>
                                 <td>{!! $request->status_html !!}</td>
+                                <td>{{ df($request->created_at) }}</td>
                                 <td>
                                     <form action="{{ route('requests.destroy', $request->id) }}" method="POST">
                                         @csrf
