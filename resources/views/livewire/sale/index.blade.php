@@ -35,11 +35,11 @@
                             @foreach ($transaction->sales as $sales)
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        {{ $sales->product->name }} ({{ nf($sales->price) }} cум)
+                                        {{ $sales->cardon->name }} ({{ nf($sales->price) }} cум)
                                     </div>
                                     <div>
                                         <a data-bs-toggle="dropdown" class="text-primary">
-                                            {{ nf($sales->quantity) }} {{ $sales->product->unit }} | {{ nf($sales->total) }} cум
+                                            {{ nf($sales->quantity) }} {{ $sales->cardon->unit }} | {{ nf($sales->total) }} cум
                                         </a>
 
                                     </div>
@@ -48,7 +48,7 @@
                         </td>
                         <td>{{ nf($transaction->total, 2) }} {{ $transaction->debt_info }}</td>
                         <td>
-                            {!! $transaction->payment_payment_status_html !!}
+                            {!! $transaction->payment_status_html !!}
                         </td>
                         <td>{{ df($transaction->created_at, 'd.m.Y H:i') }}</td>
                         <td>

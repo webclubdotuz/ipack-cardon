@@ -57,7 +57,7 @@ class Product extends Model
 
     public function getQuantityAttribute()
     {
-        return $this->purchases->sum('quantity') + $this->manufactures->sum('quantity') - $this->sales->sum('quantity') - $this->product_useds->sum('quantity');
+        return $this->purchases->sum('quantity') - $this->product_useds->sum('quantity');
     }
 
 

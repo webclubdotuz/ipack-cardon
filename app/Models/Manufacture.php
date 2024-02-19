@@ -10,15 +10,15 @@ class Manufacture extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
+        'cardon_id',
         'user_id',
         'quantity',
         'description',
     ];
 
-    public function product()
+    public function cardon()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Cardon::class);
     }
 
     public function user()

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('manufactures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('cardon_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->decimal('quantity', 10, 2);
             $table->text('description')->nullable();

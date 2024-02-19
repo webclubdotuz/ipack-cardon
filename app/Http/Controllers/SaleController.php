@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
-use App\Models\Request as ModelsRequest;
+use App\Models\Cardon;
 use App\Models\Transaction;
-use App\Services\PaymentService;
 use Illuminate\Http\Request;
+use App\Services\PaymentService;
 use Illuminate\Support\Facades\DB;
+use App\Models\Request as ModelsRequest;
 
 class SaleController extends Controller
 {
@@ -19,16 +20,17 @@ class SaleController extends Controller
 
     public function create()
     {
-        return view('pages.sales.create');
+        $cardons = Cardon::orderBy('name')->get();
+        return view('pages.sales.create', compact('cardons'));
     }
 
     public function store(Request $request)
     {
 
         $request->validate([
-            'products' => 'required|array',
-            'products.*.product_id' => 'required|exists:products,id',
-            'products.*.price' => 'required|numeric',
+            'cardons' => 'required|array',
+            'cardons.*.cardon_id' => 'required|exists:cardons,id',
+            'cardons.*.price' => 'required|numeric',
             'contact_id' => 'required|exists:contacts,id',
             'amount' => 'required|numeric',
             'method' => 'required',
@@ -45,15 +47,15 @@ class SaleController extends Controller
                 'description' => $request->description,
             ]);
 
-            foreach ($request->products as $product) {
+            foreach ($request->cardons as $cardon) {
                 Sale::create([
                     'transaction_id' => $transaction->id,
                     'user_id' => auth()->user()->id,
-                    'product_id' => $product['product_id'],
-                    'quantity' => $product['quantity'],
-                    'price' => $product['price'],
-                    'total' => $product['quantity'] * $product['price'],
-                    'description' => $product['description'] ?? null,
+                    'cardon_id' => $cardon['cardon_id'],
+                    'quantity' => $cardon['quantity'],
+                    'price' => $cardon['price'],
+                    'total' => $cardon['quantity'] * $cardon['price'],
+                    'description' => $cardon['description'] ?? null,
                 ]);
             }
 

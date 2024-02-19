@@ -24,31 +24,31 @@
                         <div class="col-12" id="product-div">
                             <div class="row product-clone">
                                 <div class="col-md-6">
-                                    <label for="product_id_0">Продукт</label>
-                                    <select name="products[][product_id]" id="product_id_0" class="form-select form-select-sm" required onchange="productChange(this)">
+                                    <label for="cardon_id_0">Продукт</label>
+                                    <select name="cardons[][cardon_id]" id="cardon_id_0" class="form-select form-select-sm" required onchange="cardonChange(this)">
                                         <option value="">Выберите продукт</option>
-                                        @foreach (getProducts(true) as $product)
-                                            <option value="{{ $product->id }}">{{ $product->name }} ({{ $product->quantity }} {{ $product->unit }})</option>
+                                        @foreach ($cardons as $cardon)
+                                            <option value="{{ $cardon->id }}">{{ $cardon->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="price_0">Цена</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="number" name="products[][price]" id="price_0" class="form-control form-control-sm" step="any" required min="0" onkeyup="calculateTotal()">
+                                        <input type="number" name="cardons[][price]" id="price_0" class="form-control form-control-sm" step="any" required min="0" onkeyup="calculateTotal()">
                                         <span class="input-group-text">сум</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="total_0">Количество</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="number" name="products[][quantity]" id="quantity_0" class="form-control form-control-sm" step="any" required min="0" onkeyup="calculateTotal()">
+                                        <input type="number" name="cardons[][quantity]" id="quantity_0" class="form-control form-control-sm" step="any" required min="0" onkeyup="calculateTotal()">
                                         <span class="input-group-text" id="unit_0"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="total_0">Итого</label>
-                                    <input type="text" name="products[][total]" id="total_0" class="form-control form-control-sm money" step="any" required min="0" readonly>
+                                    <input type="text" name="cardons[][total]" id="total_0" class="form-control form-control-sm money" step="any" required min="0" readonly>
                                 </div>
                                 <div class="col-12">
                                     <a type="button" class="text-danger product-remove float-end"><i class="bx bx-trash"></i> Удалить</a> <br>
@@ -64,7 +64,7 @@
                             <label for="contact_id">Клиент</label>
                             <select name="contact_id" id="contact_id" class="form-control form-control-sm" required onchange="getRequest(this.value)">
                                 <option value="">Выберите клиента</option>
-                                @foreach (getContacts(['client', 'both']) as $supplier)
+                                @foreach (getContacts(['customer', 'both']) as $supplier)
                                     <option value="{{ $supplier->id }}">{{ $supplier->fullname }}</option>
                                 @endforeach
                             </select>
@@ -177,11 +177,11 @@
             return parseFloat(money.replace(',', '.'));
         }
 
-        function productChange(e) {
-            let product_id = $(e).val();
+        function cardonChange(e) {
+            let cardon_id = $(e).val();
             let index = $(e).attr('id').split('_')[2];
             $.ajax({
-                url: '/api/products/' + product_id,
+                url: '/api/cardon/' + cardon_id,
                 type: 'GET',
                 success: function(response) {
                     console.log(response);

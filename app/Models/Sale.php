@@ -11,7 +11,7 @@ class Sale extends Model
 
     protected $fillable = [
         'transaction_id',
-        'product_id',
+        'cardon_id',
         'user_id',
         'quantity',
         'quantity',
@@ -24,9 +24,9 @@ class Sale extends Model
         return $this->belongsTo(Transaction::class);
     }
 
-    public function product()
+    public function cardon()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Cardon::class);
     }
 
     public function user()

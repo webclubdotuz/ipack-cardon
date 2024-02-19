@@ -79,8 +79,8 @@ class HomeController extends Controller
             ->get();
 
         $manufactures = \App\Models\Manufacture::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
-            ->groupBy('product_id')
-            ->selectRaw('product_id, sum(quantity) as quantity')
+            ->groupBy('cardon_id')
+            ->selectRaw('cardon_id, sum(quantity) as quantity')
             ->get();
 
         $manufactureLabels = [];

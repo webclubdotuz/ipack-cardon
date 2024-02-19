@@ -66,6 +66,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{product}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('destroy');
     });
 
+    // Cardons
+    Route::group(['prefix' => 'cardons', 'as' => 'cardons.'], function () {
+        Route::get('/', [\App\Http\Controllers\CardonController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\CardonController::class, 'create'])->name('create');
+        Route::post('/store', [\App\Http\Controllers\CardonController::class, 'store'])->name('store');
+        Route::get('/show/{cardon}', [\App\Http\Controllers\CardonController::class, 'show'])->name('show');
+        Route::get('/edit/{cardon}', [\App\Http\Controllers\CardonController::class, 'edit'])->name('edit');
+        Route::put('/edit/{cardon}', [\App\Http\Controllers\CardonController::class, 'update'])->name('update');
+        Route::delete('/{cardon}', [\App\Http\Controllers\CardonController::class, 'destroy'])->name('destroy');
+    });
+
     // ProductUsed
     Route::group(['prefix' => 'product-used', 'as' => 'product-used.'], function () {
         Route::get('/', [\App\Http\Controllers\ProductUsedController::class, 'index'])->name('index');

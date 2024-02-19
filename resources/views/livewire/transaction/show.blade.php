@@ -98,7 +98,7 @@
                                         <tbody>
                                             @foreach($transaction->sales as $sale)
                                                 <tr>
-                                                    <td>{{ $sale->product->name }}</td>
+                                                    <td>{{ $sale->cardon->name }}</td>
                                                     <td>{{ nf($sale->price) }}</td>
                                                     <td>{{ nf($sale->quantity, 2) }} кг</td>
                                                     <td>{{ nf($sale->total,2) }}</td>

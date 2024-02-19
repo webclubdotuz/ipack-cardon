@@ -76,7 +76,7 @@
                     <tbody>
                         @foreach ($sales as $sale)
                             <tr>
-                                <td>{{ $sale->product->name }}</td>
+                                <td>{{ $sale->cardon->name }}</td>
                                 <td>{{ nf($sale->total) }}</td>
                             </tr>
                         @endforeach

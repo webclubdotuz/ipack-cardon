@@ -45,6 +45,7 @@
             <ul>
                 <li><a href="{{ route('products.index') }}"><i class="lni lni-bricks"></i>Продукты</a>
                 <li><a href="{{ route('rolls.index') }}"><i class="lni lni-paperclip"></i>Рулоны</a>
+                <li><a href="{{ route('cardons.index') }}"><i class="lni lni-box"></i>Кардоны</a>
             </ul>
         </li>
         <li>

@@ -68,8 +68,8 @@ class ReportController extends Controller
             ->get();
 
         $sales = Sale::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
-        ->selectRaw('sum(total) as total, product_id')
-        ->groupBy('product_id')
+        ->selectRaw('sum(total) as total, cardon_id')
+        ->groupBy('cardon_id')
         ->orderBy('total', 'asc')
         ->get();
 
@@ -78,7 +78,7 @@ class ReportController extends Controller
 
         foreach ($sales as $sale) {
             $dataProducts[] = $sale->total;
-            $labelsProducts[] = $sale->product->name;
+            $labelsProducts[] = $sale->cardon->name;
         }
 
 

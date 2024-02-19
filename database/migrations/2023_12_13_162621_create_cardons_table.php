@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('cardons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaction_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('cardon_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->decimal('quantity', 10, 2);
+            $table->char('name', 100);
+            $table->decimal('width', 10, 2);
+            $table->decimal('length', 10, 2);
+            $table->decimal('layer', 10, 2);
+            $table->decimal('salary_percent', 10, 2);
             $table->decimal('price', 10, 2);
-            $table->decimal('total', 10, 2);
-            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('cardons');
     }
 };

@@ -29,23 +29,37 @@ return new class extends Migration
         ]);
 
         DB::table('users')->insert([
-            'fullname' => 'Manager 1',
-            'username' => 'manager1',
+            'fullname' => 'Улугбек',
+            'username' => 'ulugbek',
             'phone' => '934879590',
             'password' => bcrypt('123456')
         ]);
 
         DB::table('users')->insert([
-            'fullname' => 'Manager 2',
-            'username' => 'manager2',
+            'fullname' => 'Гулзар',
+            'username' => 'gulzar',
+            'phone' => '934879511',
+            'password' => bcrypt('123456')
+        ]);
+
+        DB::table('users')->insert([
+            'fullname' => 'Марат',
+            'username' => 'marat',
             'phone' => '934879591',
             'password' => bcrypt('123456')
         ]);
 
         DB::table('users')->insert([
-            'fullname' => 'Presser 1',
-            'username' => 'presser1',
+            'fullname' => 'Анвар',
+            'username' => 'anvar',
             'phone' => '934879592',
+            'password' => bcrypt('123456')
+        ]);
+
+        DB::table('users')->insert([
+            'fullname' => 'Гулмира',
+            'username' => 'gulmira',
+            'phone' => '934879593',
             'password' => bcrypt('123456')
         ]);
 

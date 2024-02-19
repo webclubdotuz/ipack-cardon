@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Product show
+Route::get('/cardon/{id}', 'App\Http\Controllers\Api\CardonController@show')->name('api.products.show');
 Route::get('/products/{id}', 'App\Http\Controllers\Api\ProductController@show')->name('api.products.show');
 Route::get('/request/{contact_id}', [App\Http\Controllers\Api\RequestController::class, 'contact'])->name('api.request.contact');
