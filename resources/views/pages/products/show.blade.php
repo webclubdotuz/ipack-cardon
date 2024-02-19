@@ -32,29 +32,13 @@
             <div class="card">
                 <div class="card-body">
                     <x-tab.nav>
-                        @if(!$product->shop)
                         <x-tab.li :id="'purchases'" :title="'Покупки'" :active="true" :icon="'bx bx-shopping-bag'" />
-                        @endif
-                        <x-tab.li :id="'manufactures'" :title="'Производства'" :icon="'bx bx-layer'" />
-                        @if($product->shop)
-                        <x-tab.li :id="'sales'" :title="'Продажи'" :icon="'bx bx-shopping-bag'" />
-                        @endif
                     </x-tab.nav>
 
                     <div class="tab-content py-3">
-                        @if(!$product->shop)
                         <x-tab.content :id="'purchases'" :active="true">
                             @livewire('product.purchase', ['product' => $product])
                         </x-tab.content>
-                        @endif
-                        <x-tab.content :id="'manufactures'">
-                            @livewire('product.manufacture', ['product' => $product])
-                        </x-tab.content>
-                        @if($product->shop)
-                        <x-tab.content :id="'sales'">
-                            @livewire('product.sale', ['product' => $product])
-                        </x-tab.content>
-                        @endif
                     </div>
                 </div>
             </div>

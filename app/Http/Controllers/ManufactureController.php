@@ -20,12 +20,12 @@ class ManufactureController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|exists:products,id',
+            'cardon_id' => 'required|exists:cardons,id',
             'quantity' => 'required|numeric',
         ]);
 
         $manufacture = Manufacture::create([
-            'product_id' => $request->product_id,
+            'cardon_id' => $request->cardon_id,
             'user_id' => auth()->user()->id,
             'quantity' => $request->quantity,
             'description' => $request->description,

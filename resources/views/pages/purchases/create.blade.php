@@ -27,7 +27,7 @@
                                     <label for="product_id_0">Продукт</label>
                                     <select name="products[][product_id]" id="product_id_0" class="form-select form-select-sm" required onchange="productChange(this, 0)">
                                         <option value="">Выберите продукт</option>
-                                        @foreach (getProducts($shop=false) as $product)
+                                        @foreach (getProducts() as $product)
                                             <option value="{{ $product->id }}">{{ $product->name }} ({{ $product->unit }})</option>
                                         @endforeach
                                     </select>

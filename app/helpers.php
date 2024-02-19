@@ -70,14 +70,9 @@ function getContacts($types = ['customer', 'both'], $id = null)
     ->orderBy('fullname')->get();
 }
 
-function getProducts($shop)
+function getProducts()
 {
-
-    if ($shop === 'all') {
-        return \App\Models\Product::orderBy('name')->get();
-    }
-
-    return \App\Models\Product::where('shop', $shop)->orderBy('name')->get();
+    return \App\Models\Product::orderBy('name')->get();
 }
 
 function getMyProducts()

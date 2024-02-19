@@ -5,7 +5,7 @@
 @endpush
 @section('content')
 <x-breadcrumb :title="'Производство коробки'">
-    <a href="{{ route('products.index') }}" class="btn btn-sm btn-primary">
+    <a href="{{ route('cardons.index') }}" class="btn btn-sm btn-primary">
         <i class="bx bx-list-ul"></i>
         Список
     </a>
@@ -22,10 +22,10 @@
                 <div class="col-md-12">
                     <div class="row g-2">
                         <div class="col-12">
-                            @foreach (getProducts($shop = 1) as $product)
-                            <input class="btn-check" type="radio" name="product_id" id="{{ $product->id }}" value="{{ $product->id }}" required>
-                            <label class="btn btn-outline-success btn-sm d-inline-block" for="{{ $product->id }}">
-                                {{ $product->name }}
+                            @foreach (getCardons() as $cardon)
+                            <input class="btn-check" type="radio" name="cardon_id" id="{{ $cardon->id }}" value="{{ $cardon->id }}" required>
+                            <label class="btn btn-outline-success btn-sm d-inline-block" for="{{ $cardon->id }}">
+                                {{ $cardon->name }}
                             </label>
                             @endforeach
                         </div>

@@ -39,11 +39,11 @@
                             </a>
                         </td>
 						<td>
-                            <a href="{{ route('products.show', $manufacture->product->id) }}" class="text-primary">
-                                {{ $manufacture->product->name }}
+                            <a href="{{ route('cardons.show', $manufacture->cardon->id) }}" class="text-primary">
+                                {{ $manufacture->cardon->name }}
                             </a>
                         </td>
-						<td>{{ nf($manufacture->quantity) }} {{ $manufacture->product->unit }}</td>
+						<td>{{ nf($manufacture->quantity) }} {{ $manufacture->cardon->unit }}</td>
                         <td>
                             {{ $manufacture->description }}
                         </td>

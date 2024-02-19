@@ -34,12 +34,6 @@
                             {{ Form::label('description', 'Описание', ['class' => 'form-label']) }}
                             {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3]) }}
                         </div>
-                        <div class="col-12">
-                            <label for="shop">
-                                <input type="checkbox" name="shop" id="shop" class="form-check-input">
-                                Продажи
-                            </label>
-                        </div>
                     </div>
                 </div>
                 <div class="col-12">

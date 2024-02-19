@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('quantity', 10, 2);
             $table->char('unit', 10)->default('шт');
             $table->string('image')->nullable();
-            $table->boolean('shop')->default(false);
             $table->timestamps();
         });
 
