@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('contact_id')->constrained();
             $table->foreignId('user_id')->constrained();
-
+            $table->foreignId('cardon_id')->constrained();
+            $table->integer('quantity');
             $table->longText('description');
 
             $table->date('deadline');

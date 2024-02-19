@@ -29,12 +29,16 @@ class RequestController extends Controller
     {
         $request->validate([
             'contact_id' => 'required|exists:contacts,id',
+            'cardon_id' => 'required|exists:cardons,id',
+            'quantity' => 'required|numeric',
             'deadline' => 'required|date|after:today', // '2022-02-02'
             'description' => 'required',
         ]);
 
         $request = ModelsRequest::create([
             'contact_id' => $request->contact_id,
+            'cardon_id' => $request->cardon_id,
+            'quantity' => $request->quantity,
             'user_id' => $request->user()->id,
             'deadline' => $request->deadline,
             'description' => $request->description,
@@ -55,6 +59,7 @@ class RequestController extends Controller
         if ($request->status !== 'pending') {
             return redirect()->route('requests.index')->with('error', 'Нельзя удалить заявку в статусе ' . $request->status);
         }
+
         $request->delete();
         return redirect()->route('requests.index')->with('success', 'Успешно удалено');
     }

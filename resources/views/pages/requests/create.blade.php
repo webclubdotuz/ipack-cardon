@@ -30,6 +30,20 @@
                             {{ Form::label('deadline', 'Срок') }}
                             {{ Form::date('deadline', null, ['class' => 'form-control', 'required']) }}
                         </div>
+                        <div class="col-md-6">
+                            <label for="cardon_id">Картон</label>
+                            <select name="cardon_id" id="cardon_id" class="form-control select2" required>
+                                <option value="">Выберите</option>
+                                @foreach (getCardons() as $cardon)
+                                    <option value="{{ $cardon->id }}">{{ $cardon->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="quantity">Количество</label>
+                            <input type="number" name="quantity" id="quantity" class="form-control" required>
+                        </div>
 
                         <div class="col-12">
                             {{ Form::label('description', 'Описание') }}

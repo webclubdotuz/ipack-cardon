@@ -203,5 +203,10 @@ function monthName($month)
     return $mm[$month];
 }
 
+function getCardons()
+{
+    return \App\Models\Cardon::orderBy('name')->get();
+}
+
 
 ?>
