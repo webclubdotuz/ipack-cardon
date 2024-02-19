@@ -22,8 +22,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Размер</th>
-                                        <th>Мощность (гр)</th>
+                                        <th>Формат</th>
+                                        <th>Плотность (гр)</th>
                                         <th>Вес (кг)</th>
                                         <th>Клей</th>
                                         <th>Дата</th>
@@ -69,8 +69,8 @@
                         <div class="col-6">
                             <p>
                                 ID рулона: <span id="roll-id"></span> <br>
-                                Размер: <span id="roll-size"></span> <br>
-                                Мощность: <span id="roll-paper-weight"></span> <br>
+                                Формат: <span id="roll-size"></span> <br>
+                                Плотность: <span id="roll-paper-weight"></span> <br>
                                 Вес: <span id="roll-weight"></span> <br>
                                 Клей: <span id="roll-glue"></span> <br>
                             </p>

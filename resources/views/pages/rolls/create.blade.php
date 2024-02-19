@@ -24,11 +24,11 @@
                         <div class="col-12" id="roll-div">
                             <div class="row roll-clone">
                                 <div class="col-4">
-                                    <label for="size_0">Размер</label>
+                                    <label for="size_0">Формат</label>
                                     <input type="number" name="rolls[][size]" id="size_0" class="form-control form-control-sm" step="any" required min="0">
                                 </div>
                                 <div class="col-4">
-                                    <label for="paper_weight_0">Мощность (гр)</label>
+                                    <label for="paper_weight_0">Плотность (гр)</label>
                                     <input type="number" name="rolls[][paper_weight]" id="paper_weight_0" class="form-control form-control-sm" step="any" required min="0">
                                 </div>
                                 <div class="col-4">
