@@ -37,7 +37,7 @@
                         <td>{{ $sale->user->fullname }}</td>
                         <td>{{ $sale->transaction->contact->fullname }}</td>
                         <td>{{ $sale->description }}</td>
-                        <td>{{ nf($sale->quantity) }} {{ $sale->product->unit }}</td>
+                        <td>{{ nf($sale->quantity) }} {{ $sale->cardon->unit }}</td>
                         <td>{{ nf($sale->price) }}</td>
                         <td>{{ nf($sale->total) }}</td>
                         <td>{{ df($sale->created_at) }}</td>

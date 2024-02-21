@@ -27,7 +27,7 @@
 				@foreach ($sales as $sale)
 					<tr>
 						<td>{{ $loop->iteration }}</td>
-						<td>{{ $sale->product->name }}</td>
+						<td>{{ $sale->cardon->name }}</td>
 						<td>
                             {{ nf($sale->quantity, 2) }} кг
 						</td>

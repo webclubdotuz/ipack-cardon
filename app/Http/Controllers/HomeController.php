@@ -87,7 +87,7 @@ class HomeController extends Controller
         $manufactureData = [];
 
         foreach ($manufactures as $manufacture) {
-            $manufactureLabels[] = $manufacture->product->name;
+            $manufactureLabels[] = $manufacture->cardon->name;
             $manufactureData[] = $manufacture->quantity;
         }
 

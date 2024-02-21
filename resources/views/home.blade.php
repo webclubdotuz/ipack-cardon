@@ -70,7 +70,7 @@
                         <tbody>
                             @foreach ($manufactures as $manufactures)
                                 <tr>
-                                    <td>{{ $manufactures->product->name }}</td>
+                                    <td>{{ $manufactures->cardon->name }}</td>
                                     <td>{{ nf($manufactures->quantity) }}</td>
                                 </tr>
                             @endforeach

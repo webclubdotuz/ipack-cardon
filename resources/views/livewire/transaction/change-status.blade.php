@@ -35,7 +35,7 @@
                                     </div>
                                     @foreach($transaction?->sales as $sale)
                                     <div class="col-6">
-                                        <label><b>{{ $sale->product->name }}</b> <span class="text-success">{{ nf($sale->quantity, 2) }} кг</span></label>
+                                        <label><b>{{ $sale->cardon->name }}</b> <span class="text-success">{{ nf($sale->quantity, 2) }} кг</span></label>
                                         <input type="number" class="form-control" wire:model="losses.sale.{{ $sale->id }}">
                                     </div>
                                     <div class="col-6">
