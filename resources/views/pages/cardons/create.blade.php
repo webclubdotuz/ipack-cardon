@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="layer" class="form-label">Слой</label>
-                            <input type="number" name="layer" id="layer" class="form-control" required>
+                            <input type="number" name="layer" id="layer" class="form-control" required step="any">
                         </div>
                     </div>
                 </div>
