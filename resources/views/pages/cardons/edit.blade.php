@@ -36,15 +36,20 @@
                             <label for="salary_percent" class="form-label">Зарплата %</label>
                             <input type="number" name="salary_percent" id="salary_percent" class="form-control" required min="0" max="100" step="any" value="{{ $cardon->salary_percent }}">
                         </div>
-                        <div class="col-md-4">
-                            <label for="width" class="form-label">Ширина</label>
-                            <input type="number" name="width" id="width" class="form-control" required step="any" value="{{ $cardon->width }}">
-                        </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="length" class="form-label">Длина</label>
                             <input type="number" name="length" id="length" class="form-control" required step="any" value="{{ $cardon->length }}">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <label for="width" class="form-label">Ширина</label>
+                            <input type="number" name="width" id="width" class="form-control" required step="any" value="{{ $cardon->width }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="height" class="form-label">Высота</label>
+                            <input type="number" name="height" id="height" class="form-control" required step="any" value="{{ $cardon->height }}">
+                        </div>
+
+                        <div class="col-md-3">
                             <label for="layer" class="form-label">Слой</label>
                             <input type="number" name="layer" id="layer" class="form-control" required value="{{ $cardon->layer }}" step="any">
                         </div>

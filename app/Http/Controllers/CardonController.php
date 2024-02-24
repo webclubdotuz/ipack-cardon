@@ -26,6 +26,7 @@ class CardonController extends Controller
             'name' => 'required|min:3',
             'width' => 'required|numeric',
             'length' => 'required|numeric',
+            'height' => 'required|numeric', // 'height' is missing in the validation rules
             'layer' => 'required|numeric',
             'salary_percent' => 'required|numeric',
             'price' => 'required|numeric',
@@ -35,6 +36,7 @@ class CardonController extends Controller
             'name' => $request->name,
             'width' => $request->width,
             'length' => $request->length,
+            'height' => $request->height, // 'height' is missing in the request
             'layer' => $request->layer,
             'salary_percent' => $request->salary_percent,
             'price' => $request->price,
@@ -54,6 +56,7 @@ class CardonController extends Controller
             'name' => 'required|min:3',
             'width' => 'required|numeric',
             'length' => 'required|numeric',
+            'height' => 'required|numeric', // 'height' is missing in the validation rules
             'layer' => 'required|numeric',
             'salary_percent' => 'required|numeric',
             'price' => 'required|numeric',
@@ -63,6 +66,7 @@ class CardonController extends Controller
             'name' => $request->name,
             'width' => $request->width,
             'length' => $request->length,
+            'height' => $request->height, // 'height' is missing in the request
             'layer' => $request->layer,
             'salary_percent' => $request->salary_percent,
             'price' => $request->price,

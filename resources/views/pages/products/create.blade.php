@@ -22,13 +22,17 @@
             <div class="card-body row g-2">
                 <div class="col-md-12">
                     <div class="row g-2">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             {{ Form::label('name', 'Название', ['class' => 'form-label']) }}
                             {{ Form::text('name', null, ['class' => 'form-control', 'required']) }}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             {{ Form::label('price', 'Цена продажи', ['class' => 'form-label']) }}
                             {{ Form::text('price', null, ['class' => 'form-control money', 'required']) }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ Form::label('unit_id', 'Единица измерения', ['class' => 'form-label']) }}
+                            {{ Form::text('unit', null, ['class' => 'form-control', 'required', 'placeholder' => 'шт']) }}
                         </div>
                         <div class="col-md-12">
                             {{ Form::label('description', 'Описание', ['class' => 'form-label']) }}

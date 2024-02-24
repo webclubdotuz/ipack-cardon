@@ -13,6 +13,7 @@ class Cardon extends Model
         'name',
         'width',
         'length',
+        'height',
         'layer',
         'salary_percent',
         'price',

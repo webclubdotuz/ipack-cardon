@@ -16,6 +16,7 @@ return new class extends Migration
             $table->char('name', 100);
             $table->decimal('width', 10, 2);
             $table->decimal('length', 10, 2);
+            $table->decimal('height', 10, 2);
             $table->decimal('layer', 10, 2);
             $table->decimal('salary_percent', 10, 2);
             $table->decimal('price', 10, 2);

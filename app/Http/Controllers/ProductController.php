@@ -27,6 +27,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'price' => 'required|numeric',
+            'unit' => 'required',
         ]);
 
 
@@ -34,6 +35,7 @@ class ProductController extends Controller
             'name'=> $request->name,
             'price'=> $request->price,
             'quantity'=> 0,
+            'unit'=> $request->unit,
             'description'=> $request->description,
         ]);
 
@@ -55,11 +57,13 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'price' => 'required|numeric',
+            'unit' => 'required',
         ]);
 
         $product->update([
             'name'=> $request->name,
             'price'=> $request->price,
+            'unit'=> $request->unit,
             'description'=> $request->description,
         ]);
 

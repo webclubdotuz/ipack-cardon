@@ -18,8 +18,9 @@
                                 <thead>
                                     <tr>
                                         <th>Название</th>
-                                        <th>Ширина</th>
                                         <th>Длина</th>
+                                        <th>Ширина</th>
+                                        <th>Высота</th>
                                         <th>Слой</th>
                                         <th>Зарплата</th>
                                         <th>Цена</th>
@@ -31,8 +32,9 @@
                                     @foreach ($cardons as $cardon)
                                     <tr>
                                         <td>{{ $cardon->name }}</td>
-                                        <td>{{ $cardon->width }}</td>
                                         <td>{{ $cardon->length }}</td>
+                                        <td>{{ $cardon->width }}</td>
+                                        <td>{{ $cardon->height }}</td>
                                         <td>{{ $cardon->layer }}</td>
                                         <td>{{ $cardon->salary_percent }} %</td>
                                         <td>{{ $cardon->price }}</td>
