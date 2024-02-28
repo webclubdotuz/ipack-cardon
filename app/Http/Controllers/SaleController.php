@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Services\PaymentService;
 use Illuminate\Support\Facades\DB;
 use App\Models\Request as ModelsRequest;
+use App\Services\TelegramService;
 
 class SaleController extends Controller
 {
@@ -78,6 +79,39 @@ class SaleController extends Controller
 
 
             DB::commit();
+
+            // 🔔🔔🔔🔔🔔🔔
+            // 📤Продажа
+            // 🙎🏻‍♂️ Заказчик: Казбек
+            // 📱 Телефон: 910977788
+            // 📦Товары: Коныс (Нукус Мед Тех)
+            // 💲Цена: 4700 Сум
+            // 🖇Количество: 238 шт
+            // 💰 Сумма: 3 456 000
+            // ✅ Оплачено: 0
+            // ❗️ Остаток: 3 456 000
+            // 📅 Дата: 9 фев 2024 15:07
+            // 👨‍💻 Сотрудник: Марат
+
+            $text = "🔔🔔🔔🔔🔔🔔\n";
+            $text .= "📤Продажа\n";
+            $text .= "🙎🏻‍♂️ Заказчик: {$transaction->contact->fullname}\n";
+            $text .= "📱 Телефон: {$transaction->contact->phone}\n";
+            foreach ($transaction->sales as $sale) {
+                $text .= "📦Товары: {$sale->cardon->name}\n";
+                $text .= "💲Цена: " . number_format($sale->price, 0, '', ' ') . " Сум\n";
+                $text .= "🖇Количество: {$sale->quantity} шт\n";
+                $text .= "💰 Сумма: " . number_format($sale->total, 0, '', ' ') . "\n";
+                $text .= "________________\n";
+            }
+
+            $text .= "💰 Общий сумма: " . number_format($transaction->total, 0, '', ' ') . "\n";
+            $text .= "✅ Оплачено: " . number_format($transaction->payments->sum('amount'), 0, '', ' ') . "\n";
+            $text .= "❗️ Остаток: " . number_format($transaction->total - $transaction->payments->sum('amount'), 0, '', ' ') . "\n";
+            $text .= "📅 Дата: {$transaction->created_at->format('j M Y H:i')}\n";
+            $text .= "👨‍💻 Сотрудник: {$transaction->user->fullname}";
+
+            TelegramService::sendChannel($text);
 
             return redirect()->route('sales.index')->with('success', 'Покупка успешно добавлена');
 

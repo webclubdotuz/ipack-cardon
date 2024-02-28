@@ -59,11 +59,11 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <h3>Продажи</h3>
+                    <h3>Производство</h3>
                     <table class="table table-bordered table-sm">
                         <thead>
                             <tr>
-                                <th>Поступление</th>
+                                <th>Производство</th>
                                 <th>{{ nf($manufactures->sum('quantity')) }}</th>
                             </tr>
                         </thead>
