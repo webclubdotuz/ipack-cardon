@@ -93,7 +93,7 @@
                                 <div class="row g-3">
                                     <div class="col-12">
                                         <label for="quantity">Количество</label>
-                                        <input type="number" name="quantity" id="quantity" class="form-control form-control-sm" required>
+                                        <input type="number" name="quantity" id="quantity" class="form-control form-control-sm" required step="any">
                                     </div>
                                     <div class="col-12">
                                         <label for="description">Описание</label>
