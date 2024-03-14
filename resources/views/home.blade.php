@@ -42,7 +42,7 @@
                                 <tr>
                                     <td>{{ methods()[$payment_method->method] }}</td>
                                     <td>{{ nf($payment_method->sum) }}</td>
-                                    <td>{{ nf($payment_method->sum / $payment_methods->sum('sum') * 100) }}</td>
+                                    <td>{{ nf($payment_method->sum / ($payment_methods->sum('sum') ?? 1 * 100)) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
