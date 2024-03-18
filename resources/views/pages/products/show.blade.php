@@ -33,11 +33,15 @@
                 <div class="card-body">
                     <x-tab.nav>
                         <x-tab.li :id="'purchases'" :title="'Покупки'" :active="true" :icon="'bx bx-shopping-bag'" />
+                        <x-tab.li :id="'product_useds'" :title="'Использование'" :icon="'bx bx-list-ul'" />
                     </x-tab.nav>
 
                     <div class="tab-content py-3">
                         <x-tab.content :id="'purchases'" :active="true">
                             @livewire('product.purchase', ['product' => $product])
+                        </x-tab.content>
+                        <x-tab.content :id="'product_useds'" :active="true">
+                            @livewire('product.used', ['product' => $product])
                         </x-tab.content>
                     </div>
                 </div>
