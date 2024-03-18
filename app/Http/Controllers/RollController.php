@@ -18,12 +18,17 @@ class RollController extends Controller
         return view('pages.rolls.index', compact('rolls'));
     }
 
-    public function used()
+    public function used(Request $request)
     {
 
-        $rolls = Roll::orderBy('created_at', 'desc')->where('used', true)->get();
+        $start_date = $request->start_date ?? date('Y-m-01');
+        $end_date = $request->end_date ?? date('Y-m-d');
 
-        return view('pages.rolls.used', compact('rolls'));
+        $rolls = Roll::orderBy('created_at', 'desc')
+        ->whereBetween('used_date', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+        ->where('used', true)->get();
+
+        return view('pages.rolls.used', compact('rolls', 'start_date', 'end_date'));
     }
 
     public function create()

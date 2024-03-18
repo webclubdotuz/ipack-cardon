@@ -48,6 +48,17 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Итого</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>{{ nf($rolls->sum('weight')) }} кг</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
