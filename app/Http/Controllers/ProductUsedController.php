@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductUsed;
+use App\Services\TelegramService;
 
 class ProductUsedController extends Controller
 {
@@ -36,6 +37,20 @@ class ProductUsedController extends Controller
             'quantity' => $request->quantity,
             'description' => $request->description,
         ]);
+
+        // 🛠Производственный расход
+        // 📦Продукт: Крахмал клей (Россия)
+        // 🖇Количество: 28 кг
+        // 📅 Дата: 16 Mar 2024 08:04
+        // 👨‍💻 Сотрудник: Иброхим Абдуллаев
+
+        $text = "🛠Производственный расход\n";
+        $text .= "📦Продукт: {$product->name}\n";
+        $text .= "🖇Количество: {$request->quantity} {$product->unit}\n";
+        $text .= "📅 Дата: " . now()->format('d M Y H:i') . "\n";
+        $text .= "👨‍💻 Сотрудник: " . auth()->user()->fullname;
+
+        TelegramService::sendChannel($text);
 
         return back()->with('success', 'Товар списан со склада');
     }

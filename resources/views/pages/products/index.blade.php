@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="col-12">
                                         <label for="description">Описание</label>
-                                        <textarea name="description" id="description" class="form-control form-control-sm" rows="3" required></textarea>
+                                        <textarea name="description" id="description" class="form-control form-control-sm" rows="3"></textarea>
                                     </div>
                                     <input type="hidden" name="product_id" id="product_id" required>
                                     <div class="col-12">
