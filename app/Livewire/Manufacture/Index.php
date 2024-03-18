@@ -22,14 +22,15 @@ class Index extends Component
     public function delete($id)
     {
 
-        // 24 hours
         $manufacture = Manufacture::find($id);
-        if (strtotime($manufacture->created_at) < strtotime('-24 hours')) {
+
+        if (strtotime($manufacture->created_at) < strtotime('-24 hours') && !hasRoles()) {
             $this->alert('error', 'Невозможно удалить!');
             return;
         }
 
         Manufacture::find($id)->delete();
+
         $this->alert('success', 'Успешно удалено!');
     }
 
