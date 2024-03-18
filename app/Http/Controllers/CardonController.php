@@ -45,6 +45,11 @@ class CardonController extends Controller
         return redirect()->route('cardons.index')->with('success', 'Кардон успешно добавлен');
     }
 
+    public function show(Cardon $cardon)
+    {
+        return view('pages.cardons.show', compact('cardon'));
+    }
+
     public function edit(Cardon $cardon)
     {
         return view('pages.cardons.edit', compact('cardon'));

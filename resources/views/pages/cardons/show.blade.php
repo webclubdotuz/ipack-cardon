@@ -5,8 +5,8 @@
     <link href="/assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
 @endpush
 @section('content')
-    <x-breadcrumb :title="$product->name">
-        <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary">
+    <x-breadcrumb :title="$cardon->name">
+        <a href="{{ route('cardons.index') }}" class="btn btn-sm btn-primary">
             <i class="bx bx-list-ul"></i>
             Список
         </a>
@@ -14,16 +14,29 @@
 
     <div class="row">
         <div class="col-12">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td><b>Продукт</b></td>
-                        <td>{{ $product->name }}</td>
-                        <td><b>Количество</b></td>
-                        <td>{{ $product->quantity }} {{ $product->unit }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <b>Кардон:</b> {{ $cardon->name }} <br>
+                                <b>Количество:</b> {{ $cardon->quantity }} <br>
+                                <b>Зарплата:</b> {{ $cardon->salary }} <br>
+                                <b>Цена:</b> {{ $cardon->price }} <br>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <b>Длина:</b> {{ $cardon->length }} <br>
+                                <b>Ширина:</b> {{ $cardon->width }} <br>
+                                <b>Высота:</b> {{ $cardon->height }} <br>
+                                <b>Слой:</b> {{ $cardon->layer }} <br>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-12">
             @include('components.alert')
@@ -32,29 +45,13 @@
             <div class="card">
                 <div class="card-body">
                     <x-tab.nav>
-                        @if(!$product->shop)
-                        <x-tab.li :id="'purchases'" :title="'Покупки'" :active="true" :icon="'bx bx-shopping-bag'" />
-                        @endif
-                        <x-tab.li :id="'manufactures'" :title="'Производства'" :icon="'bx bx-layer'" />
-                        @if($product->shop)
-                        <x-tab.li :id="'sales'" :title="'Продажи'" :icon="'bx bx-shopping-bag'" />
-                        @endif
+                        <x-tab.li :id="'sales'" :title="'Продажи'" :active="true" :icon="'bx bx-shopping-bag'" />
                     </x-tab.nav>
 
                     <div class="tab-content py-3">
-                        @if(!$product->shop)
-                        <x-tab.content :id="'purchases'" :active="true">
-                            @livewire('product.purchase', ['product' => $product])
+                        <x-tab.content :id="'sales'" :active="true">
+                            @livewire('cardon.sale-list', ['cardon' => $cardon])
                         </x-tab.content>
-                        @endif
-                        <x-tab.content :id="'manufactures'">
-                            @livewire('product.manufacture', ['product' => $product])
-                        </x-tab.content>
-                        @if($product->shop)
-                        <x-tab.content :id="'sales'">
-                            @livewire('product.sale', ['product' => $product])
-                        </x-tab.content>
-                        @endif
                     </div>
                 </div>
             </div>
