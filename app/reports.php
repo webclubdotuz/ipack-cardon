@@ -5,7 +5,7 @@ function getTransactionsTotal($year, $month, $type)
     return \App\Models\Transaction::where('type', $type)
     ->whereYear('created_at', $year)
     ->whereMonth('created_at', $month)
-    ->where('type', $type)
+    ->whereIn('type', $type)
     ->whereIn('status', ['transport', 'completed'])
     ->sum('total');
 }
@@ -15,7 +15,7 @@ function getTransactionsDebt($year, $month, $type)
     $transactions = \App\Models\Transaction::where('type', $type)
     ->whereYear('created_at', $year)
     ->whereMonth('created_at', $month)
-    ->where('type', $type)
+    ->whereIn('type', $type)
     ->where('payment_status', 'debt')
     ->whereIn('status', ['transport', 'completed'])
     ->get();

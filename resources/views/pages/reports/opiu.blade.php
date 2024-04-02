@@ -52,13 +52,13 @@
                                     <tr>
                                         <td>Общий Сумма Продажи</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'sale')) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['sale'])) }}</td>
                                         @endforeach
                                     </tr>
                                     <tr>
                                         <td>Общий Сумма Покупки</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'purchase') + getTransactionsTotal($selected_year, $transactionMonth->month, 'roll')) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
                                         @endforeach
                                     </tr>
                                     @foreach (getExpenseCategories() as $expenseCategory)
@@ -74,7 +74,7 @@
                                     <tr>
                                         <td>Валовой прибыль</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'sale') - (getTransactionsTotal($selected_year, $transactionMonth->month, 'purchase') + getTransactionsTotal($selected_year, $transactionMonth->month, 'roll')) - getExpensesYM($selected_year, $transactionMonth->month, null)) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) - getTransactionsTotal($selected_year, $transactionMonth->month, ['purchase', 'roll']) - getExpensesYM($selected_year, $transactionMonth->monthn, null)) }}</td>
                                         @endforeach
                                     </tr>
                                 </tfoot>
@@ -105,13 +105,13 @@
                                     <tr>
                                         <td>Общий Сумма Продажи</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'sale')) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['sale'])) }}</td>
                                         @endforeach
                                     </tr>
                                     <tr>
                                         <td>Общий Сумма Покупки</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'purchase') + getTransactionsTotal($selected_year, $transactionMonth->month, 'roll')) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
                                         @endforeach
                                     </tr>
                                     @foreach (getExpenseCategories() as $expenseCategory)
@@ -127,13 +127,13 @@
                                     <tr>
                                         <td>Задолженность клиента</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsDebt($selected_year, $transactionMonth->month, 'sale')) }}</td>
+                                            <td>{{ nf(getTransactionsDebt($selected_year, $transactionMonth->month, ['sale'])) }}</td>
                                         @endforeach
                                     </tr>
                                     <tr>
                                         <td>Задолженность поставщика</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsDebt($selected_year, $transactionMonth->month, 'purchase')) }}</td>
+                                            <td>{{ nf(getTransactionsDebt($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
                                         @endforeach
                                     </tr>
 
@@ -142,7 +142,7 @@
                                     <tr>
                                         <td>Валовой прибыль</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'sale') - (getTransactionsTotal($selected_year, $transactionMonth->month, 'purchase') + getTransactionsTotal($selected_year, $transactionMonth->month, 'roll')) - getExpensesYM($selected_year, $transactionMonth->month, null) + getTransactionsDebt($selected_year, $transactionMonth->month, 'sale') - getTransactionsDebt($selected_year, $transactionMonth->month, 'purchase')) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) - getTransactionsTotal($selected_year, $transactionMonth->month, ['purchase', 'roll']) - getExpensesYM($selected_year, $transactionMonth->monthn, null) + getTransactionsDebt($selected_year, $transactionMonth->month, ['sale']) - getTransactionsDebt($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
                                         @endforeach
                                     </tr>
                                 </tfoot>
