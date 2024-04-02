@@ -81,6 +81,20 @@
                     </tr>
                 @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <td>Итого</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ nf($transactions->sum('total')) }}</td>
+                    <td>
+                        Долг: {{ nf($transactions->sum('debt')) }} <br>
+                        Оплачено: {{ nf($transactions->sum('paid')) }}
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
         </table>
 
         {{ $transactions->links() }}

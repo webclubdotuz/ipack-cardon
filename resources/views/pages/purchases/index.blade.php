@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-	<x-breadcrumb :title="'Сырье продукции'">
-		<a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">
+	<x-breadcrumb :title="'Покупки'">
+		<a href="{{ route('purchases.create') }}" class="btn btn-sm btn-primary">
 			<i class="bx bx-plus"></i>
 			Добавить
 		</a>

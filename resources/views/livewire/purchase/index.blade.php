@@ -1,13 +1,21 @@
 <div class="row g-2">
     <div class="col-12">
         <div class="row g-2">
-            <div class="col-6">
+            <div class="col-4">
                 <label for="start_date">Начало периода</label>
                 <input type="date" class="form-control" id="start_date" wire:model.live="start_date">
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <label for="end_date">Конец периода</label>
                 <input type="date" class="form-control" id="end_date" wire:model.live="end_date">
+            </div>
+            <div class="col-4">
+                <label for="type">Тип</label>
+                <select class="form-control" id="type" wire:model.live="type">
+                    <option value="">Все</option>
+                    <option value="roll">Рулон</option>
+                    <option value="purchase">Покупка</option>
+                </select>
             </div>
         </div>
     </div>
@@ -19,6 +27,7 @@
 					<th>Поставщик</th>
 					<th>Товары</th>
 					<th>Сумма</th>
+					<th>Статус платежа</th>
 					<th>Дата</th>
 				</tr>
 			</thead>
@@ -65,13 +74,23 @@
                             @endforeach
                         </td>
 						<td>{{ nf($transaction->total, 2) }} {{ $transaction->debt_info }}</td>
+                        <td>{!! $transaction->payment_status_html !!}</td>
 						<td>{{ df($transaction->created_at, 'd.m.Y H:i') }}</td>
 					</tr>
 				@endforeach
 			</tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-end">Итого:</td>
+                    <td>{{ nf($transactions->sum('total'), 2) }}</td>
+                    <td>
+                        Долг: {{ nf($transactions->sum('debt'), 2) }} <br>
+                        Оплачено: {{ nf($transactions->sum('paid'), 2) }}
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
 		</table>
-
-        {{ $transactions->links() }}
 	</div>
 </div>
 

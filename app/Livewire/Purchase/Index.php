@@ -12,11 +12,11 @@ class Index extends Component
 
     use WithPagination;
 
-    public $start_date, $end_date;
+    public $start_date, $end_date, $type;
 
     public function mount()
     {
-        $this->start_date = date('Y-m-d');
+        $this->start_date = date('Y-m-01');
         $this->end_date = date('Y-m-d');
     }
 
@@ -32,10 +32,13 @@ class Index extends Component
     public function render()
     {
 
-        $transactions = Transaction::whereIn('type', ['purchase', 'roll'])
+        $transactions = Transaction::where('type', '!=', 'sale')
+        ->when($this->type, function ($query) {
+            return $query->where('type', $this->type);
+        })
         ->whereBetween('created_at', [$this->start_date . ' 00:00:00', $this->end_date . ' 23:59:59'])
         ->orderBy('created_at', 'desc')
-        ->paginate(100);
+        ->get();
 
         return view('livewire.purchase.index', compact('transactions'));
     }
