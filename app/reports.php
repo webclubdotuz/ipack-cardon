@@ -78,3 +78,18 @@ function getPaymentSumma($year, $month, $method, $type)
 
     return $paymentSumma;
 }
+
+
+function getUserRolls($year, $month)
+{
+    return \App\Models\Roll::whereYear('used_date', $year)
+    ->whereMonth('used_date', $month)
+    ->sum('total');
+}
+
+function getUsedProducts($year, $month)
+{
+    return \App\Models\ProductUsed::whereYear('created_at', $year)
+    ->whereMonth('created_at', $month)
+    ->sum('total');
+}
