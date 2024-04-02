@@ -23,7 +23,7 @@ class ReportController extends Controller
         $transactionMonths = Transaction::selectRaw('month(created_at) as month')
             ->whereRaw('year(created_at) = ?', [$selected_year])
             ->groupBy('month')
-            ->orderBy('month', 'desc')
+            ->orderBy('month', 'asc')
             ->get();
 
         return view('pages.reports.opiu', compact('transactionYears', 'selected_year', 'transactionMonths'));

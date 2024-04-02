@@ -74,7 +74,7 @@
                                     <tr>
                                         <td>Валовой прибыль</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'sale') - getTransactionsTotal($selected_year, $transactionMonth->month, 'purchase') - getExpensesYM($selected_year, $transactionMonth->monthn, null)) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'sale') - getTransactionsTotal($selected_year, $transactionMonth->month, 'purchase') - getExpensesYM($selected_year, $transactionMonth->month, null)) }}</td>
                                         @endforeach
                                     </tr>
                                 </tfoot>
@@ -142,7 +142,7 @@
                                     <tr>
                                         <td>Валовой прибыль</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'sale') - getTransactionsTotal($selected_year, $transactionMonth->month, 'purchase') - getExpensesYM($selected_year, $transactionMonth->monthn, null) + getTransactionsDebt($selected_year, $transactionMonth->month, 'sale') - getTransactionsDebt($selected_year, $transactionMonth->month, 'purchase')) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, 'sale') - getTransactionsTotal($selected_year, $transactionMonth->month, 'purchase') - getExpensesYM($selected_year, $transactionMonth->month, null) + getTransactionsDebt($selected_year, $transactionMonth->month, 'sale') - getTransactionsDebt($selected_year, $transactionMonth->month, 'purchase')) }}</td>
                                         @endforeach
                                     </tr>
                                 </tfoot>
