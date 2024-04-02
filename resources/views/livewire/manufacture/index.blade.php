@@ -56,9 +56,18 @@
 					</tr>
 				@endforeach
 			</tbody>
+            <tfoot>
+                <tr>
+                    <th>Итого</th>
+                    <th></th>
+                    <th></th>
+                    <th>{{ nf($manufactures->sum('quantity')) }}</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
 		</table>
-
-        {{ $manufactures->links() }}
 	</div>
 </div>
 

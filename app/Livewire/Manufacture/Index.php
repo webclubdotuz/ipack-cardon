@@ -39,7 +39,7 @@ class Index extends Component
 
         $manufactures = Manufacture::whereBetween('created_at', [$this->start_date . ' 00:00:00', $this->end_date . ' 23:59:59'])
         ->orderBy('created_at', 'desc')
-        ->paginate(100);
+        ->get();
 
         return view('livewire.manufacture.index', compact('manufactures'));
     }
