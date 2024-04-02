@@ -85,7 +85,9 @@
                 <tr>
                     <td>Итого</td>
                     <td></td>
-                    <td></td>
+                    <td>
+                        {{ $transactions->map(function($transaction) { return $transaction->sales->sum('quantity'); })->sum() }}
+                    </td>
                     <td>{{ nf($transactions->sum('total')) }}</td>
                     <td>
                         Долг: {{ nf($transactions->sum('debt')) }} <br>
@@ -96,8 +98,6 @@
                 </tr>
             </tfoot>
         </table>
-
-        {{ $transactions->links() }}
     </div>
 
     @livewire('transaction.payment')

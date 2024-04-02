@@ -35,7 +35,7 @@ class Index extends Component
         ->whereBetween('created_at', [$this->start_date . ' 00:00:00', $this->end_date . ' 23:59:59'])
         ->where('status', '!=', 'pending')
         ->orderBy('created_at', 'desc')
-        ->paginate(100);
+        ->get();
 
         return view('livewire.sale.index', compact('transactions'));
     }
