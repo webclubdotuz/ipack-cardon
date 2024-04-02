@@ -17,6 +17,18 @@ class Used extends Component
         $this->end_date = date('Y-m-d');
     }
 
+    public function delete($id)
+    {
+        $product_used = ProductUsed::find($id);
+        $product = $product_used->product;
+        $product->quantity += $product_used->quantity;
+        $product->save();
+        $product_used->delete();
+
+        session()->flash('success', 'Успешно удалено');
+
+    }
+
     public function render()
     {
 

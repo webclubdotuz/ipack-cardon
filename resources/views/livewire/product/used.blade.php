@@ -25,6 +25,7 @@
                     <th>Кол-во</th>
                     <th>Описание</th>
 					<th>Дата</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,6 +36,11 @@
                         <td>{{ $product_used->quantity }} {{ $product_used->product->unit }}</td>
                         <td>{{ $product_used->description }}</td>
                         <td>{{ df($product_used->created_at) }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" wire:click="delete({{ $product_used->id }})" wire:confirm="Вы уверены?">
+                                <i class="bx bx-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -47,6 +53,7 @@
                     <td>Итого</td>
                     <td></td>
                     <td>{{ nf($product_useds->sum('quantity')) }} {{ $product->unit }}</td>
+                    <td></td>
                     <td></td>
                     <td></td>
 
