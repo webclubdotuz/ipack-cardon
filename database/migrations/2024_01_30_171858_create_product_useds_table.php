@@ -19,6 +19,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
         });
+
+        // php artisan make:migration add_price_to_product_useds_table --table=product_useds
+
     }
 
     /**

@@ -9,6 +9,24 @@ use App\Services\TelegramService;
 
 class ProductUsedController extends Controller
 {
+
+    public function index()
+    {
+        $productUseds = ProductUsed::latest()->get();
+
+        foreach ($productUseds as $productUsed) {
+
+            $product = Product::find($productUsed->product_id);
+            $last_purchase_price = $product?->purchases->last()->price ?? 0;
+
+            $productUsed->price = $last_purchase_price;
+            $productUsed->total = $last_purchase_price * $productUsed->quantity;
+            $productUsed->save();
+        }
+
+        return 'success';
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -31,10 +49,14 @@ class ProductUsedController extends Controller
         $product->quantity -= $request->quantity;
         $product->save();
 
+        $last_purchase_price = $product?->purchases->last()->price ?? 0;
+
         ProductUsed::create([
             'product_id' => $request->product_id,
             'user_id' => auth()->user()->id,
             'quantity' => $request->quantity,
+            'price' => $last_purchase_price,
+            'total' => $last_purchase_price * $request->quantity,
             'description' => $request->description,
         ]);
 
@@ -47,6 +69,8 @@ class ProductUsedController extends Controller
         $text = "🛠Производственный расход\n";
         $text .= "📦Продукт: {$product->name}\n";
         $text .= "🖇Количество: {$request->quantity} {$product->unit}\n";
+        $text .= "💰Цена: {$last_purchase_price} сум\n";
+        $text .= "💵Сумма: " . $last_purchase_price * $request->quantity . " сум\n";
         $text .= "📅 Дата: " . now()->format('d M Y H:i') . "\n";
         $text .= "👨‍💻 Сотрудник: " . auth()->user()->fullname;
 

@@ -13,6 +13,8 @@ class ProductUsed extends Model
         'product_id',
         'user_id',
         'quantity',
+        'price',
+        'total',
         'description',
     ];
 
