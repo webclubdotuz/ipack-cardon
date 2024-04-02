@@ -2,8 +2,7 @@
 
 function getTransactionsTotal($year, $month, $type)
 {
-    return \App\Models\Transaction::where('type', $type)
-    ->whereYear('created_at', $year)
+    return \App\Models\Transaction::whereYear('created_at', $year)
     ->whereMonth('created_at', $month)
     ->whereIn('type', $type)
     ->whereIn('status', ['transport', 'completed'])
@@ -12,8 +11,7 @@ function getTransactionsTotal($year, $month, $type)
 
 function getTransactionsDebt($year, $month, $type)
 {
-    $transactions = \App\Models\Transaction::where('type', $type)
-    ->whereYear('created_at', $year)
+    $transactions = \App\Models\Transaction::whereYear('created_at', $year)
     ->whereMonth('created_at', $month)
     ->whereIn('type', $type)
     ->where('payment_status', 'debt')
