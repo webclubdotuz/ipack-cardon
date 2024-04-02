@@ -14,7 +14,7 @@
                 <select class="form-control" id="type" wire:model.live="type">
                     <option value="">Все</option>
                     <option value="roll">Рулон</option>
-                    <option value="purchase">Покупка</option>
+                    <option value="purchase">Товары</option>
                 </select>
             </div>
         </div>
@@ -81,7 +81,17 @@
 			</tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" class="text-end">Итого:</td>
+                    <td colspan="2" class="text-end">Итого:</td>
+                    <td>
+                        Товары:
+                        {{ nf($transactions->map(function($transaction) {
+                        return $transaction->purchases->sum('quantity');
+                    })->sum(), 2) }} <br>
+                        Рулоны:
+                        {{ nf($transactions->map(function($transaction) {
+                        return $transaction->rolls->sum('weight');
+                    })->sum(), 2) }}
+                    </td>
                     <td>{{ nf($transactions->sum('total'), 2) }}</td>
                     <td>
                         Долг: {{ nf($transactions->sum('debt'), 2) }} <br>
