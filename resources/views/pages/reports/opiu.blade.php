@@ -271,7 +271,7 @@
                                     <tr>
                                         <td>Валовой прибыль</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) - getTransactionsTotal($selected_year, $transactionMonth->month, ['purchase', 'roll']) - getExpensesYM($selected_year, $transactionMonth->monthn, null) + getTransactionsDebt($selected_year, $transactionMonth->month, ['sale']) - getTransactionsDebt($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) - getTransactionsTotal($selected_year, $transactionMonth->month, ['purchase', 'roll']) - getExpensesYM($selected_year, $transactionMonth->monthn, null) - getTransactionsDebt($selected_year, $transactionMonth->month, ['sale']) - getTransactionsDebt($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
                                         @endforeach
                                     </tr>
                                 </tfoot>
