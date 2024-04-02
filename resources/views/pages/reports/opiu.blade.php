@@ -115,9 +115,15 @@
                                         @endforeach
                                     </tr>
                                     <tr>
-                                        <td>Общий Сумма Покупки</td>
+                                        <td>Расход рулонов</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
+                                            <td>{{ nf(getUserRolls($selected_year, $transactionMonth->month)) }}</td>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        <td>Расход продукты</td>
+                                        @foreach ($transactionMonths as $transactionMonth)
+                                            <td>{{ nf(getUsedProducts($selected_year, $transactionMonth->month)) }}</td>
                                         @endforeach
                                     </tr>
                                     @foreach (getExpenseCategories() as $expenseCategory)
@@ -148,7 +154,7 @@
                                     <tr>
                                         <td>Валовой прибыль</td>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) - getTransactionsTotal($selected_year, $transactionMonth->month, ['purchase', 'roll']) - getExpensesYM($selected_year, $transactionMonth->monthn, null) - getTransactionsDebt($selected_year, $transactionMonth->month, ['sale']) - getTransactionsDebt($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
+                                            <td>{{ nf(getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) - getUserRolls($selected_year, $transactionMonth->month) - getUsedProducts($selected_year, $transactionMonth->month) - getExpensesYM($selected_year, $transactionMonth->monthn, null) - getTransactionsDebt($selected_year, $transactionMonth->month, ['sale']) - getTransactionsDebt($selected_year, $transactionMonth->month, ['purchase', 'roll'])) }}</td>
                                         @endforeach
                                     </tr>
                                 </tfoot>
