@@ -65,6 +65,7 @@
                             <tr>
                                 <th>Производство</th>
                                 <th>{{ nf($manufactures->sum('quantity')) }}</th>
+                                <th>Остаток</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,6 +73,7 @@
                                 <tr>
                                     <td>{{ $manufactures->cardon->name }}</td>
                                     <td>{{ nf($manufactures->quantity) }}</td>
+                                    <td>{{ nf($manufactures->cardon->quantity) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

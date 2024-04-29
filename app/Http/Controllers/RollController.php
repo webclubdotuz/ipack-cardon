@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Models\Roll;
 use App\Models\Transaction;
+use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -109,6 +110,55 @@ class RollController extends Controller
             }
 
             DB::commit();
+
+
+            // 🔔🔔🔔🔔🔔🔔
+            // 📥Покупки
+            // 🙎🏻‍♂️ Поставщик : Обертачный цех
+            // 📱 Телефон: 930579343
+            // 📦Товары: Рулон 118 см / 135 гр / 585 кг
+            // 💲Цена: 5,000
+            // 💰 Сумма 2,925,000
+            // ____________________
+            // 📦Товары: Рулон 118 см / 135 гр / 578 кг
+            // 💲Цена: 5,000
+            // 💰 Сумма 2,890,000
+            // ____________________
+            // 📦Товары: Рулон 118 см / 135 гр / 549 кг
+            // 💲Цена: 5,000
+            // 💰 Сумма 2,745,000
+            // ____________________
+            // 📦Товары: Рулон 118 см / 135 гр / 549 кг
+            // 💲Цена: 5,000
+            // 💰 Сумма 2,745,000
+            // ____________________
+            // 💰 Общий сумма: 11,305,000
+            // 💰 Оплачено: 11,305,000
+            // ❗️ Остаток: 0
+            // 📅 Дата: 26 Apr 2024 15:06
+            // 👨‍💻 Сотрудник: Улугбек
+
+
+            $message = "🔔🔔🔔🔔🔔🔔\n";
+            $message .= "📥Покупки\n";
+            $message .= "🙎🏻‍♂️ Поставщик : " . $transaction->contact->fullname . "\n";
+            $message .= "📱 Телефон: " . $transaction->contact->phone . "\n";
+
+            foreach ($transaction->rolls as $roll) {
+                $message .= "📦Товары: Рулон " . $roll->size . " см / " . $roll->paper_weight . " гр / " . $roll->weight . " кг\n";
+                $message .= "💲Цена: " . nf($roll->price) . "\n";
+                $message .= "💰 Сумма " . nf($roll->total) . "\n";
+                $message .= "____________________\n";
+            }
+
+            $message .= "💰 Общий сумма: " . nf($transaction->total) . "\n";
+            $message .= "💰 Оплачено: " . nf($transaction->paid) . "\n";
+            $message .= "❗️ Остаток: " . nf($transaction->debt) . "\n";
+            $message .= "📅 Дата: " . $transaction->created_at->format('j M Y H:i') . "\n";
+            $message .= "👨‍💻 Сотрудник: " . $transaction->user->fullname . "\n";
+
+            // send message to telegram
+            TelegramService::sendChannel($message);
 
             return redirect()->back()->with('success', 'Успешно добавлено.');
         } catch (\Exception $e) {
