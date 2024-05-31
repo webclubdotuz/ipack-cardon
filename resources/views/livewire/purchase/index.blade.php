@@ -29,6 +29,7 @@
 					<th>Сумма</th>
 					<th>Статус платежа</th>
 					<th>Дата</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -76,6 +77,13 @@
 						<td>{{ nf($transaction->total, 2) }} {{ $transaction->debt_info }}</td>
                         <td>{!! $transaction->payment_status_html !!}</td>
 						<td>{{ df($transaction->created_at, 'd.m.Y H:i') }}</td>
+                        <td>
+                            @if (hasRoles())
+                                <button class="btn btn-sm btn-danger" wire:click="delete({{ $transaction->id }})" wire:confirm="Вы уверены?" wire:loading.attr="disabled">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            @endif
+                        </td>
 					</tr>
 				@endforeach
 			</tbody>
@@ -97,6 +105,7 @@
                         Долг: {{ nf($transactions->sum('debt'), 2) }} <br>
                         Оплачено: {{ nf($transactions->sum('paid'), 2) }}
                     </td>
+                    <td></td>
                     <td></td>
                 </tr>
             </tfoot>
