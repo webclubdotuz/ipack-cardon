@@ -64,6 +64,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit/{product}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('edit');
         Route::put('/edit/{product}', [\App\Http\Controllers\ProductController::class, 'update'])->name('update');
         Route::delete('/{product}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('destroy');
+
+        Route::get('/product/used', [\App\Http\Controllers\ProductController::class, 'used'])->name('used');
     });
 
     // Cardons
@@ -141,6 +143,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/odds', [\App\Http\Controllers\ReportController::class, 'odds'])->name('odds');
         Route::get('/daxod', [\App\Http\Controllers\ReportController::class, 'daxod'])->name('daxod');
         Route::get('/expense', [\App\Http\Controllers\ReportController::class, 'expense'])->name('expense');
+        Route::get('/balans', [\App\Http\Controllers\ReportController::class, 'balans'])->name('balans');
     });
 
     // Requests

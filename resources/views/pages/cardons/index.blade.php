@@ -25,10 +25,12 @@
                                         <th>Зарплата</th>
                                         <th>Цена</th>
                                         <th>Количество</th>
+                                        <th>Сумма</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $total = 0; $this_total = 0; ?>
                                     @foreach ($cardons as $cardon)
                                     <tr>
                                         <td>{{ $cardon->name }}</td>
@@ -37,8 +39,14 @@
                                         <td>{{ $cardon->height }}</td>
                                         <td>{{ $cardon->layer }}</td>
                                         <td>{{ $cardon->salary_percent }} %</td>
-                                        <td>{{ $cardon->price }}</td>
+                                        <td>{{ nf($cardon->price) }}</td>
                                         <td>{{ $cardon->quantity }}</td>
+                                        <td>
+                                            {{-- {{ nf($cardon->quantity * $cardon->price) }} --}}
+                                            <?php $this_total = $cardon->quantity * $cardon->price; ?>
+                                            {{ nf($this_total) }}
+                                            <?php $total += $this_total; ?>
+                                        </td>
                                         <td>
                                             <form action="{{ route('cardons.destroy', $cardon->id) }}" method="post">
                                                 @csrf
@@ -72,6 +80,7 @@
                                         <th></th>
                                         <th></th>
                                         <th>{{ $cardons->sum('quantity') }}</th>
+                                        <th>{{ nf($total) }}</th>
                                         <th></th>
                                     </tr>
                                 </tfoot>

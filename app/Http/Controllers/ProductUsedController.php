@@ -10,21 +10,17 @@ use App\Services\TelegramService;
 class ProductUsedController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $productUseds = ProductUsed::latest()->get();
 
-        foreach ($productUseds as $productUsed) {
+        $start_date = $request->start_date ?? date('Y-m-01');
+        $end_date = $request->end_date ?? date('Y-m-d');
 
-            $product = Product::find($productUsed->product_id);
-            $last_purchase_price = $product?->purchases->last()->price ?? 0;
+        $product_useds = ProductUsed::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-            $productUsed->price = $last_purchase_price;
-            $productUsed->total = $last_purchase_price * $productUsed->quantity;
-            $productUsed->save();
-        }
-
-        return 'success';
+        return view('pages.product-useds.index', compact('product_useds', 'start_date', 'end_date'));
     }
 
     public function store(Request $request)

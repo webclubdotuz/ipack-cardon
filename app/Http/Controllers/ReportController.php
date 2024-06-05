@@ -108,4 +108,33 @@ class ReportController extends Controller
 
         return view('pages.reports.expense', compact('start_date', 'end_date', 'data', 'labels', 'expenses'));
     }
+
+    public function balans(Request $request)
+    {
+
+        $start_date = $request->start_date ?? date('Y-m-01');
+        $end_date = $request->end_date ?? date('Y-m-d');
+
+        $products = \App\Models\Product::all();
+        $product_summa = 0;
+        foreach ($products as $product) {
+            $product_summa += $product->price * $product->quantity;
+        }
+
+        $rolls = \App\Models\Roll::where('used', 0)->get();
+        $roll_summa = $rolls->sum('total');
+
+        $cardons = \App\Models\Cardon::all();
+        $cardon_summa = 0;
+        foreach ($cardons as $cardon) {
+            $cardon_summa += $cardon->price * $cardon->quantity;
+        }
+
+
+
+
+
+
+        return view('pages.reports.balans', compact('start_date', 'end_date', 'product_summa', 'roll_summa', 'cardon_summa'));
+    }
 }

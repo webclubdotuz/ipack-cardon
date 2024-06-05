@@ -44,6 +44,7 @@
             </a>
             <ul>
                 <li><a href="{{ route('products.index') }}"><i class="lni lni-bricks"></i>Сырье</a>
+                <li><a href="{{ route('product-used.index') }}"><i class="lni lni-bricks"></i>Использованное сырье</a>
                 <li><a href="{{ route('rolls.index') }}"><i class="lni lni-paperclip"></i>Рулоны</a>
                 <li><a href="{{ route('cardons.index') }}"><i class="lni lni-dropbox-original"></i>Каровки</a>
             </ul>
@@ -109,6 +110,7 @@
                 <li><a href="{{ route('reports.odds') }}"><i class="bx bx-chart"></i> ОДДС</a></li>
                 <li><a href="{{ route('reports.daxod') }}"><i class="bx bx-chart"></i> Доходы</a></li>
                 <li><a href="{{ route('reports.expense') }}"><i class="bx bx-chart"></i> Расходы</a></li>
+                <li><a href="{{ route('reports.balans') }}"><i class="bx bx-chart"></i> Баланс</a></li>
             </ul>
         </li>
 
