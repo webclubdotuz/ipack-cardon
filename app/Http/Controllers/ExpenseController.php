@@ -36,6 +36,7 @@ class ExpenseController extends Controller
             'to_user_id' => 'nullable|exists:users,id', // 'nullable|exists:users,id
             'amount' => 'required|numeric',
             'description' => 'nullable|string',
+            'created_at' => 'nullable|date_format:Y-m-d',
         ]);
 
         Expense::create([
@@ -44,6 +45,7 @@ class ExpenseController extends Controller
             'to_user_id' => $request->to_user_id,
             'amount' => $request->amount,
             'description' => $request->description,
+            'created_at' => $request->created_at . ' ' . date('H:i:s'),
         ]);
 
         return redirect()->route('expenses.index')->with('success', 'Расход успешно добавлен');
@@ -61,6 +63,7 @@ class ExpenseController extends Controller
             'to_user_id' => 'nullable|exists:users,id', // 'nullable|exists:users,id
             'amount' => 'required|numeric',
             'description' => 'nullable|string',
+            'created_at' => 'nullable|date_format:Y-m-d',
         ]);
 
 
@@ -70,6 +73,7 @@ class ExpenseController extends Controller
             'to_user_id' => $request->to_user_id,
             'amount' => $request->amount,
             'description' => $request->description,
+            'created_at' => $request->created_at . ' ' . date('H:i:s'),
         ]);
 
         return redirect()->route('expenses.index')->with('success', 'Расход успешно обновлен');

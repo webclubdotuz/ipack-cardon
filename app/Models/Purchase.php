@@ -18,6 +18,7 @@ class Purchase extends Model
         'total',
         'description',
         'quantity_history',
+        'created_at',
     ];
 
     protected $casts = ['quantity_history' => 'array'];

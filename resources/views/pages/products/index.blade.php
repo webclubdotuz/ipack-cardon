@@ -99,6 +99,10 @@
                                         <label for="description">Описание</label>
                                         <textarea name="description" id="description" class="form-control form-control-sm" rows="3"></textarea>
                                     </div>
+                                    <div class="col-12">
+                                        <label for="created_at">Дата</label>
+                                        <input type="date" name="created_at" id="created_at" class="form-control form-control-sm" required>
+                                    </div>
                                     <input type="hidden" name="product_id" id="product_id" required>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>

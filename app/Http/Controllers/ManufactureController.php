@@ -23,6 +23,7 @@ class ManufactureController extends Controller
         $request->validate([
             'cardon_id' => 'required|exists:cardons,id',
             'quantity' => 'required|numeric',
+            'created_at' => 'nullable|date_format:Y-m-d',
         ]);
 
         $manufacture = Manufacture::create([
@@ -30,6 +31,7 @@ class ManufactureController extends Controller
             'user_id' => auth()->user()->id,
             'quantity' => $request->quantity,
             'description' => $request->description,
+            'created_at' => $request->created_at . ' ' . date('H:i:s'),
         ]);
 
         // 🔔🔔🔔🔔🔔🔔

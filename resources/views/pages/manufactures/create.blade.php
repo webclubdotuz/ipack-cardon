@@ -48,6 +48,12 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-6">
+                    <label for="created_at" class="form-label">Дата <span class="text-danger">*</span></label>
+                    {{ Form::date('created_at', date('Y-m-d'), ['class' => 'form-control', 'required']) }}
+                </div>
+
                 <div class="col-12">
                     {{ Form::submit('Создать', ['class' => 'btn btn-primary']) }}
                 </div>

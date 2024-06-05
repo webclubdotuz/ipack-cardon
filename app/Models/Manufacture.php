@@ -14,6 +14,7 @@ class Manufacture extends Model
         'user_id',
         'quantity',
         'description',
+        'created_at',
     ];
 
     public function cardon()

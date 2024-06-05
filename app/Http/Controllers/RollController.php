@@ -51,6 +51,7 @@ class RollController extends Controller
             'contact_id' => 'required|exists:contacts,id',
             'amount' => 'required|numeric',
             'method' => 'required',
+            'created_at' => 'nullable|date_format:Y-m-d',
         ]);
 
         DB::beginTransaction();
@@ -64,6 +65,7 @@ class RollController extends Controller
                 'payment_status' => 'debt',
                 'total' => 0,
                 'description' => $request->description,
+                'created_at' => $request->created_at . ' ' . date('H:i:s'),
             ]);
 
             foreach ($request->rolls as $roll) {
@@ -76,6 +78,7 @@ class RollController extends Controller
                     'glue' => $roll['glue'],
                     'price' => $roll['price'],
                     'total' => $roll['price'] * $roll['weight'],
+                    'created_at' => $request->created_at . ' ' . date('H:i:s'),
                 ]);
             }
 
@@ -94,6 +97,7 @@ class RollController extends Controller
                     'user_id' => auth()->user()->id,
                     'amount' => $transaction->total,
                     'method' => $request->method,
+                    'created_at' => $request->created_at . ' ' . date('H:i:s'),
                 ]);
             }elseif ($request->amount > 0 && $request->amount < $transaction->total) {
                 $transaction->update([
@@ -106,6 +110,7 @@ class RollController extends Controller
                     'user_id' => auth()->user()->id,
                     'amount' => $request->amount,
                     'method' => $request->method,
+                    'created_at' => $request->created_at . ' ' . date('H:i:s'),
                 ]);
             }
 

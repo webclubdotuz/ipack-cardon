@@ -7,7 +7,7 @@ use App\Models\Transaction;
 
 class PaymentService
 {
-    public function create($transaction_id, $amount, $method, $description)
+    public function create($transaction_id, $amount, $method, $description, $created_at)
     {
 
         $transaction = Transaction::find($transaction_id);
@@ -24,6 +24,7 @@ class PaymentService
                     'amount' => $amount,
                     'method' => $method,
                     'description' => $description,
+                    'created_at' => $created_at . ' ' . date('H:i:s'),
                 ]);
 
                 return 'Успешно оплачено';
@@ -38,6 +39,7 @@ class PaymentService
                     'amount' => $amount,
                     'method' => $method,
                     'description' => $description,
+                    'created_at' => $created_at . ' ' . date('H:i:s'),
                 ]);
 
                 return 'Оплачено частично';

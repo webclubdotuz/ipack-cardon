@@ -17,6 +17,7 @@ class Transaction extends Model
         'payment_status',
         'total',
         'description',
+        'created_at',
     ];
 
     public function scopeSales($query)

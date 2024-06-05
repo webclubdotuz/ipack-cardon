@@ -35,6 +35,7 @@ class SaleController extends Controller
             'contact_id' => 'required|exists:contacts,id',
             'amount' => 'required|numeric',
             'method' => 'required',
+            'created_at' => 'nullable|date_format:Y-m-d',
         ]);
 
         try {
@@ -46,6 +47,7 @@ class SaleController extends Controller
                 'payment_status' => 'debt',
                 'total' => 0,
                 'description' => $request->description,
+                'created_at' => $request->created_at . ' ' . date('H:i:s'),
             ]);
 
             foreach ($request->cardons as $cardon) {
@@ -57,6 +59,7 @@ class SaleController extends Controller
                     'price' => $cardon['price'],
                     'total' => $cardon['quantity'] * $cardon['price'],
                     'description' => $cardon['description'] ?? null,
+                    'created_at' => $request->created_at . ' ' . date('H:i:s'),
                 ]);
             }
 
@@ -65,7 +68,7 @@ class SaleController extends Controller
             ]);
 
             $payment = new PaymentService();
-            $payment->create($transaction->id, $request->amount, $request->method, $request->description);
+            $payment->create($transaction->id, $request->amount, $request->method, $request->description, $request->created_at);
 
             if ($request->request_id)
             {

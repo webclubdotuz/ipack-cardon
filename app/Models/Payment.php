@@ -16,6 +16,7 @@ class Payment extends Model
         'method',
         'amount',
         'description',
+        'created_at',
     ];
 
     public function contact()

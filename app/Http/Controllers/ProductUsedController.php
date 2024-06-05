@@ -33,6 +33,7 @@ class ProductUsedController extends Controller
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|numeric',
             'description' => 'nullable|string',
+            'created_at' => 'nullable|date_format:Y-m-d',
         ]);
 
         $product = Product::find($request->product_id);
@@ -58,6 +59,7 @@ class ProductUsedController extends Controller
             'price' => $last_purchase_price,
             'total' => $last_purchase_price * $request->quantity,
             'description' => $request->description,
+            'created_at' => $request->created_at . ' ' . date('H:i:s')
         ]);
 
         // 🛠Производственный расход

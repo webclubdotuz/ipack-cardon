@@ -91,6 +91,11 @@
                         </div>
 
                         <div class="col-12">
+                            <label for="created_at">Дата</label>
+                            <input type="date" name="created_at" id="created_at" class="form-control form-control-sm" required>
+                        </div>
+
+                        <div class="col-12">
                             <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
                         </div>
                     </form>

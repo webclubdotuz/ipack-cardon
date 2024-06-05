@@ -49,6 +49,11 @@
                             {{ Form::label('description', 'Описание') }}
                             {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3]) }}
                         </div>
+
+                        <div class="col-md-6">
+                            {{ Form::label('created_at', 'Дата') }}
+                            {{ Form::date('created_at', date('Y-m-d'), ['class' => 'form-control', 'required']) }}
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">

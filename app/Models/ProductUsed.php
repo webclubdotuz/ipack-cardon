@@ -16,6 +16,7 @@ class ProductUsed extends Model
         'price',
         'total',
         'description',
+        'created_at',
     ];
 
     public function product()

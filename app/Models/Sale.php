@@ -17,6 +17,7 @@ class Sale extends Model
         'quantity',
         'price',
         'total',
+        'created_at'
     ];
 
     public function transaction()

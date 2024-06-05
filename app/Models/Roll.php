@@ -22,6 +22,7 @@ class Roll extends Model
         'used_date',
         'used_description',
         'used_user_id',
+        'created_at',
     ];
 
     public function transaction()

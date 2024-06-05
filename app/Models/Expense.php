@@ -16,6 +16,7 @@ class Expense extends Model
         'transaction_id',
         'amount',
         'description',
+        'created_at',
     ];
 
     public function expense_category()
