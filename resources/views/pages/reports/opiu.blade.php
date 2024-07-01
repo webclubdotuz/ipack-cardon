@@ -43,7 +43,7 @@
                                     <tr>
                                         <th>Период</th>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <th>{{ monthame($transactionMonth->month) }}</th>
+                                            <th>{{ monthName($transactionMonth->month) }}</th>
                                         @endforeach
                                     </tr>
                                 </thead>
@@ -102,7 +102,7 @@
                                     <tr>
                                         <th>Период</th>
                                         @foreach ($transactionMonths as $transactionMonth)
-                                            <th>{{ monthame($transactionMonth->month) }}</th>
+                                            <th>{{ monthName($transactionMonth->month) }}</th>
                                         @endforeach
                                     </tr>
                                 </thead>
