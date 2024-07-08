@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
+
+    // kassa
+    public function kassa(Request $request)
+    {
+        $start_date = $request->start_date ?? date('Y-m-d');
+        $end_date = $request->end_date ?? date('Y-m-d');
+
+
+        return view('pages.reports.kassa', compact('start_date', 'end_date'));
+    }
+
+
     public function opiu(Request $request)
     {
 
@@ -129,11 +141,6 @@ class ReportController extends Controller
         foreach ($cardons as $cardon) {
             $cardon_summa += $cardon->price * $cardon->quantity;
         }
-
-
-
-
-
 
         return view('pages.reports.balans', compact('start_date', 'end_date', 'product_summa', 'roll_summa', 'cardon_summa'));
     }

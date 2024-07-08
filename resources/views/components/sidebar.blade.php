@@ -106,6 +106,7 @@
                 <div class="menu-title">Отчеты</div>
             </a>
             <ul>
+                <li><a href="{{ route('reports.kassa') }}"><i class="bx bx-chart"></i> Касса</a></li>
                 <li><a href="{{ route('reports.opiu') }}"><i class="bx bx-chart"></i> ОПиУ и Вал.прибыль</a></li>
                 <li><a href="{{ route('reports.odds') }}"><i class="bx bx-chart"></i> ОДДС</a></li>
                 <li><a href="{{ route('reports.daxod') }}"><i class="bx bx-chart"></i> Доходы</a></li>

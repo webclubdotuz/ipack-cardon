@@ -91,3 +91,42 @@ function getUsedProducts($year, $month)
     ->whereMonth('created_at', $month)
     ->sum('total');
 }
+
+
+function getPaymentDateSumma($start_date, $end_date, $method, $type)
+{
+    $paymentSumma = \App\Models\Payment::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+    ->when($method, function ($query, $method) {
+        return $query->where('method', $method);
+    })
+    ->when($type, function ($query, $type) {
+        return $query->whereHas('transaction', function ($query) use ($type) {
+            $query->where('type', $type);
+        });
+    })
+    ->sum('amount');
+
+    return $paymentSumma;
+}
+
+// expense
+function getExpensesDateSumma($start_date, $end_date, $expense_category_id=null, $method=null)
+{
+
+    if (is_null($expense_category_id)) {
+        return \App\Models\Expense::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+        ->when($method, function ($query, $method) {
+            return $query->where('method', $method);
+        })
+        ->sum('amount');
+    }
+
+    return \App\Models\Expense::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+    ->when($method, function ($query, $method) {
+        return $query->where('method', $method);
+    })
+    ->where('expense_category_id', $expense_category_id)
+    ->sum('amount');
+
+}
+

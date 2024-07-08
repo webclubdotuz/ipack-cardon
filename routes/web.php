@@ -139,6 +139,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Reports
     Route::group(['prefix' => 'reports', 'as' => 'reports.'], function () {
+        Route::get('/kassa', [\App\Http\Controllers\ReportController::class, 'kassa'])->name('kassa');
         Route::get('/opiu', [\App\Http\Controllers\ReportController::class, 'opiu'])->name('opiu');
         Route::get('/odds', [\App\Http\Controllers\ReportController::class, 'odds'])->name('odds');
         Route::get('/daxod', [\App\Http\Controllers\ReportController::class, 'daxod'])->name('daxod');
