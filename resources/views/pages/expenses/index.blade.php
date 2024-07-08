@@ -50,6 +50,7 @@
                                 <th>Описание</th>
                                 <th>Создано</th>
                                 <th>Сумма</th>
+                                <th>Тип оплаты</th>
                                 <th>Дата</th>
                                 <th></th>
                             </tr>
@@ -62,6 +63,7 @@
                                 <td>{{ $expense->description }}</td>
                                 <td>{{ $expense->user->fullname }}</td>
                                 <td>{{ nf($expense->amount) }}</td>
+                                <td>{{ methods()[$expense->method] }}</td>
                                 <td>{{ $expense->created_at->format('d.m.Y') }}</td>
                                 <td>
                                     <form action="{{ route('expenses.destroy', $expense->id) }}" method="POST">

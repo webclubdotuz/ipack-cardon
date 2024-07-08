@@ -137,6 +137,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{expense}', [\App\Http\Controllers\ExpenseController::class, 'destroy'])->name('destroy');
     });
 
+    // Payments
+    Route::group(['prefix' => 'payments', 'as' => 'payments.'], function () {
+        Route::get('/', [\App\Http\Controllers\PaymentController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\PaymentController::class, 'create'])->name('create');
+        Route::post('/store', [\App\Http\Controllers\PaymentController::class, 'store'])->name('store');
+        Route::get('/edit/{payment}', [\App\Http\Controllers\PaymentController::class, 'edit'])->name('edit');
+        Route::put('/edit/{payment}', [\App\Http\Controllers\PaymentController::class, 'update'])->name('update');
+        Route::delete('/{payment}', [\App\Http\Controllers\PaymentController::class, 'destroy'])->name('destroy');
+    });
+
     // Reports
     Route::group(['prefix' => 'reports', 'as' => 'reports.'], function () {
         Route::get('/kassa', [\App\Http\Controllers\ReportController::class, 'kassa'])->name('kassa');

@@ -13,10 +13,14 @@ class ExpenseController extends Controller
         $start_date = $request->start_date ?? date('Y-m-01');
         $end_date = $request->end_date ?? date('Y-m-d');
         $expense_category_id = $request->expense_category_id ?? null;
+        $method = $request->method ?? '';
 
         $expenses = Expense::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
         ->when($expense_category_id, function ($query) use ($expense_category_id) {
             return $query->where('expense_category_id', $expense_category_id);
+        })
+        ->when($method, function ($query, $method) {
+            return $query->where('method', $method);
         })
         ->orderBy('created_at', 'desc')
         ->get();

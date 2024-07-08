@@ -15,6 +15,7 @@ class Expense extends Model
         'to_user_id',
         'transaction_id',
         'amount',
+        'method', // 'method',
         'description',
         'created_at',
     ];

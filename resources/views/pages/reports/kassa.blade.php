@@ -52,54 +52,78 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    Продажи
+                                    <a href="{{ route('sales.index', ['start_date' => $start_date, 'end_date' => $end_date]) }}" target="_blank">
+                                        Продажи
+                                    </a>
                                 </td>
                                 @foreach (methods() as $key=>$value)
                                 <td>
-                                    {{ nf(getPaymentDateSumma($start_date, $end_date, $key, 'sale'), 2) }}
+                                    <a href="{{ route('payments.index', ['start_date' => $start_date, 'end_date' => $end_date, 'type' => 'sale', 'method' => $key]) }}" target="_blank">
+                                        {{ nf(getPaymentDateSumma($start_date, $end_date, $key, 'sale'), 2) }}
+                                    </a>
                                 </td>
                                 @endforeach
                                 <td>
-                                    {{ nf(getPaymentDateSumma($start_date, $end_date, null, 'sale'), 2) }}
+                                    <a href="{{ route('payments.index', ['start_date' => $start_date, 'end_date' => $end_date, 'type' => 'sale']) }}" target="_blank">
+                                        {{ nf(getPaymentDateSumma($start_date, $end_date, null, 'sale'), 2) }}
+                                    </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Покупка
+                                    <a href="{{ route('purchases.index', ['start_date' => $start_date, 'end_date' => $end_date]) }}" target="_blank">
+                                        Покупка
+                                    </a>
                                 </td>
                                 @foreach (methods() as $key=>$value)
                                 <td>
-                                    {{ nf(getPaymentDateSumma($start_date, $end_date, $key, 'purchase'), 2) }}
+                                    <a href="{{ route('payments.index', ['start_date' => $start_date, 'end_date' => $end_date, 'type' => 'purchase', 'method' => $key]) }}" target="_blank">
+                                        {{ nf(getPaymentDateSumma($start_date, $end_date, $key, 'purchase'), 2) }}
+                                    </a>
                                 </td>
                                 @endforeach
                                 <td>
-                                    {{ nf(getPaymentDateSumma($start_date, $end_date, null, 'purchase'), 2) }}
+                                    <a href="{{ route('payments.index', ['start_date' => $start_date, 'end_date' => $end_date, 'type' => 'purchase']) }}" target="_blank">
+                                        {{ nf(getPaymentDateSumma($start_date, $end_date, null, 'purchase'), 2) }}
+                                    </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Рулон
+                                    <a href="{{ route('rolls.index', ['start_date' => $start_date, 'end_date' => $end_date]) }}" target="_blank">
+                                        Рулон
+                                    </a>
                                 </td>
                                 @foreach (methods() as $key=>$value)
                                 <td>
-                                    {{ nf(getPaymentDateSumma($start_date, $end_date, $key, 'roll'), 2) }}
+                                    <a href="{{ route('payments.index', ['start_date' => $start_date, 'end_date' => $end_date, 'type' => 'roll', 'method' => $key]) }}" target="_blank">
+                                        {{ nf(getPaymentDateSumma($start_date, $end_date, $key, 'roll'), 2) }}
+                                    </a>
                                 </td>
                                 @endforeach
                                 <td>
-                                    {{ nf(getPaymentDateSumma($start_date, $end_date, null, 'roll'), 2) }}
+                                    <a href="{{ route('payments.index', ['start_date' => $start_date, 'end_date' => $end_date, 'type' => 'roll']) }}" target="_blank">
+                                        {{ nf(getPaymentDateSumma($start_date, $end_date, null, 'roll'), 2) }}
+                                    </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Расходы
+                                    <a href="{{ route('expenses.index', ['start_date' => $start_date, 'end_date' => $end_date]) }}" target="_blank">
+                                        Расходы
+                                    </a>
                                 </td>
                                 @foreach (methods() as $key=>$value)
                                 <td>
-                                    {{ nf(getExpensesDateSumma($start_date, $end_date, $expense_category_id=null, $key), 2) }}
+                                    <a href="{{ route('expenses.index', ['start_date' => $start_date, 'end_date' => $end_date, 'method' => $key]) }}" target="_blank">
+                                        {{ nf(getExpensesDateSumma($start_date, $end_date, null, $key), 2) }}
+                                    </a>
                                 </td>
                                 @endforeach
                                 <td>
-                                    {{ nf(getExpensesDateSumma($start_date, $end_date, null, null), 2) }}
+                                    <a href="{{ route('expenses.index', ['start_date' => $start_date, 'end_date' => $end_date]) }}" target="_blank">
+                                        {{ nf(getExpensesDateSumma($start_date, $end_date, null, null), 2) }}
+                                    </a>
                                 </td>
                             </tr>
 

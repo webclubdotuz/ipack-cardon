@@ -203,5 +203,15 @@ function getCardons()
     return \App\Models\Cardon::orderBy('name')->get();
 }
 
+function types()
+{
+    $types = [
+        'purchase' => 'Покупка',
+        'sale' => 'Продажа',
+        'roll' => 'Рулон',
+    ];
+
+    return $types;
+}
 
 ?>
