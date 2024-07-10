@@ -45,6 +45,7 @@ class PaymentController extends Controller
             'created_at' => 'required|date',
         ]);
 
+        // dd($request->all(), $payment);
         DB::beginTransaction();
 
         try {
@@ -52,7 +53,7 @@ class PaymentController extends Controller
             $payment->update([
                 'amount' => $request->amount,
                 'method' => $request->method,
-                'created_at' => $request->created_at,
+                'created_at' => $request->created_at . ' ' . date('H:i:s'),
             ]);
 
 
@@ -62,6 +63,7 @@ class PaymentController extends Controller
             {
                 flash('Оплаченная сумма не может быть больше общей суммы', 'danger');
                 throw new \Exception('Оплаченная сумма не может быть больше общей суммы');
+                dd('Оплаченная сумма не может быть больше общей суммы');
             }
 
             if ($transaction->paid == $transaction->total)
@@ -80,11 +82,15 @@ class PaymentController extends Controller
 
             flash('Оплата успешно обновлена');
 
+            DB::commit();
+
             return redirect()->route('payments.index');
 
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollBack();
+
+            flash('Ошибка обновления оплаты', 'danger');
 
             return back();
         }
