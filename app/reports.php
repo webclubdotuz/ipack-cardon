@@ -144,9 +144,11 @@ function getInvenstsDateSumma($start_date, $end_date, $method=null)
 // balans
 function getBalansDateSumma($start_date, $end_date, $method=null)
 {
-    $paymentSumma = getPaymentDateSumma($start_date, $end_date, $method, null);
+    $paymentSumma = getPaymentDateSumma($start_date, $end_date, $method, 'sale');
+    $paymentPurchaseSumma = getPaymentDateSumma($start_date, $end_date, $method, 'purchase');
+    $paymentRollSumma = getPaymentDateSumma($start_date, $end_date, $method, 'roll');
     $expenseSumma = getExpensesDateSumma($start_date, $end_date, null, $method);
     $invenstSumma = getInvenstsDateSumma($start_date, $end_date, $method);
 
-    return $paymentSumma + $invenstSumma - $expenseSumma;
+    return $paymentSumma + $invenstSumma - $expenseSumma - $paymentPurchaseSumma - $paymentRollSumma;
 }
