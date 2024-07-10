@@ -123,6 +123,7 @@
             </a>
             <ul>
                 <li><a href="{{ route('users.index') }}"><i class="bx bx-user"></i> Пользователи</a>
+                <li><a href="{{ route('invensts.index') }}"><i class="bx bx-list-plus"></i> Инвестиции</a>
             </ul>
         </li>
     </ul>

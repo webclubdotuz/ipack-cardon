@@ -50,6 +50,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr class="bg-light">
+                                <td>
+                                    Сегодня баланс
+                                </td>
+                                @foreach (methods() as $key=>$value)
+                                <td>
+                                    {{ nf(getBalansDateSumma(date('2024-07-01'), $end_date, $key)) }}
+                                </td>
+                                @endforeach
+                                <td>
+                                    {{ nf(getBalansDateSumma(date('2024-07-01'), $end_date, null)) }}
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     <a href="{{ route('sales.index', ['start_date' => $start_date, 'end_date' => $end_date]) }}" target="_blank">
@@ -126,9 +139,6 @@
                                     </a>
                                 </td>
                             </tr>
-
-
-
                         </tbody>
                     </table>
                 </div>

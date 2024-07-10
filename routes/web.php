@@ -147,6 +147,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{payment}', [\App\Http\Controllers\PaymentController::class, 'destroy'])->name('destroy');
     });
 
+    // invensts
+    Route::resource('invensts', \App\Http\Controllers\InvenstController::class);
+
     // Reports
     Route::group(['prefix' => 'reports', 'as' => 'reports.'], function () {
         Route::get('/kassa', [\App\Http\Controllers\ReportController::class, 'kassa'])->name('kassa');

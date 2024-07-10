@@ -130,3 +130,23 @@ function getExpensesDateSumma($start_date, $end_date, $expense_category_id=null,
 
 }
 
+
+// invenst
+function getInvenstsDateSumma($start_date, $end_date, $method=null)
+{
+    return \App\Models\Invenst::whereBetween('date', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+    ->when($method, function ($query, $method) {
+        return $query->where('method', $method);
+    })
+    ->sum('amount');
+}
+
+// balans
+function getBalansDateSumma($start_date, $end_date, $method=null)
+{
+    $paymentSumma = getPaymentDateSumma($start_date, $end_date, $method, null);
+    $expenseSumma = getExpensesDateSumma($start_date, $end_date, null, $method);
+    $invenstSumma = getInvenstsDateSumma($start_date, $end_date, $method);
+
+    return $paymentSumma + $invenstSumma - $expenseSumma;
+}
