@@ -65,6 +65,25 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <a href="{{ route('invensts.index') }}" target="_blank">
+                                        Инвестиции
+                                    </a>
+                                </td>
+                                @foreach (methods() as $key=>$value)
+                                <td>
+                                    <a href="{{ route('invensts.index', ['type' => 'sale', 'method' => $key]) }}" target="_blank">
+                                        {{ nf(getInvenstsDateSumma($start_date, $end_date, $key), 2) }}
+                                    </a>
+                                </td>
+                                @endforeach
+                                <td>
+                                    <a href="{{ route('invensts.index', ['type' => 'sale']) }}" target="_blank">
+                                        {{ nf(getInvenstsDateSumma($start_date, $end_date, null), 2) }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <a href="{{ route('sales.index', ['start_date' => $start_date, 'end_date' => $end_date]) }}" target="_blank">
                                         Продажи
                                     </a>
@@ -137,6 +156,20 @@
                                     <a href="{{ route('expenses.index', ['start_date' => $start_date, 'end_date' => $end_date]) }}" target="_blank">
                                         {{ nf(getExpensesDateSumma($start_date, $end_date, null, null), 2) }}
                                     </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Итого
+                                </td>
+                                @foreach (methods() as $key=>$value)
+                                <td>
+                                    {{ nf(getBalansDateSumma($start_date, $end_date, $key)) }}
+                                </td>
+                                @endforeach
+                                <td>
+                                    {{ nf(getBalansDateSumma($start_date, $end_date, null)) }}
                                 </td>
                             </tr>
                         </tbody>
