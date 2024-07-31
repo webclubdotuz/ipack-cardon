@@ -4,7 +4,9 @@
             <img src="/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
         </div>
         <div>
-            <h4 class="logo-text">Cardon</h4>
+            <h4 class="logo-text">
+                Коробка
+            </h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-first-page'></i>
         </div>
@@ -22,7 +24,12 @@
             <a href="{{ route('requests.index') }}">
                 <div class="parent-icon"><i class='bx bx-list-ul'></i>
                 </div>
-                <div class="menu-title">Заявки</div>
+                <div class="menu-title">
+                    Заявки
+                    <span class="badge rounded-pill bg-danger float-right">
+                        {{ $requestModelCount }}
+                    </span>
+                </div>
             </a>
         </li>
         <li>

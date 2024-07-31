@@ -171,7 +171,7 @@ function methods()
         'cash' => 'Наличные',
         'card' => 'Карта',
         'Click' => 'Click',
-        'transfer' => 'Перевод',
+        'transfer' => 'Перечисление',
     ];
 }
 
