@@ -11,6 +11,13 @@
             </div>
         </div>
     </div>
+
+    <div wire:loading class="col-12">
+		<div class="spinner-border text-primary" role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+
     <div class="col-12 table-responsive">
         <table class="table table-striped table-bordered" id="table">
             <thead>
@@ -34,17 +41,17 @@
                         </td>
                         <td>
                             @foreach ($transaction->sales as $sales)
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    {{ $sales->product->name }} ({{ nf($sales->price) }} cум)
-                                </div>
-                                <div>
-                                    <a data-bs-toggle="dropdown" class="text-primary">
-                                        {{ nf($sales->quantity) }} {{ $sales->product->unit }} | {{ nf($sales->total) }} cум
-                                    </a>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        {{ $sales->cardon->name }} ({{ nf($sales->price) }} cум)
+                                    </div>
+                                    <div>
+                                        <a data-bs-toggle="dropdown" class="text-primary">
+                                            {{ nf($sales->quantity) }} {{ $sales->cardon->unit }} | {{ nf($sales->total) }} cум
+                                        </a>
 
+                                    </div>
                                 </div>
-                            </div>
                             @endforeach
                         </td>
                         <td>{{ nf($transaction->total, 2) }} {{ $transaction->debt_info }}</td>
