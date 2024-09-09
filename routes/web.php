@@ -14,6 +14,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    // debts
+    Route::group(['prefix' => 'debts', 'as' => 'debts.'], function () {
+        Route::get('/customers', [\App\Http\Controllers\DebtController::class, 'customer'])->name('customers');
+        Route::get('/suppliers', [\App\Http\Controllers\DebtController::class, 'supplier'])->name('suppliers');
+    });
 
     // contacts
     Route::group(['prefix' => 'contacts', 'as' => 'contacts.'], function () {

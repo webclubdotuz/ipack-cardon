@@ -45,6 +45,17 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='lni lni-money-protection'></i>
+                </div>
+                <div class="menu-title">Долг</div>
+            </a>
+            <ul>
+                <li><a href="{{ route('debts.customers') }}"><i class="lni lni-users"></i> Клиенты</a>
+                <li><a href="{{ route('debts.suppliers') }}"><i class="lni lni-users"></i> Поставщики</a>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='lni lni-dropbox-original'></i>
                 </div>
                 <div class="menu-title">Склад</div>
