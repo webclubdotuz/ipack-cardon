@@ -4,7 +4,7 @@
 	<x-breadcrumb :title="'Рулоны (не использован)'">
         <a href="{{ route('rolls.used') }}" class="btn btn-sm btn-success">
 			<i class="bx bx-list-check"></i>
-			Использовать
+			Использованные
 		</a>
 	</x-breadcrumb>
 

@@ -82,6 +82,7 @@ function getUserRolls($year, $month)
 {
     return \App\Models\Roll::whereYear('used_date', $year)
     ->whereMonth('used_date', $month)
+    ->where('used', true)
     ->sum('total');
 }
 

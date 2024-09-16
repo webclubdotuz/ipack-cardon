@@ -39,6 +39,7 @@
                             <table class="table table-striped table-bordered" id="table">
                                 <thead>
                                     <tr>
+                                        <th>№</th>
                                         <th>ID</th>
                                         <th>Формат</th>
                                         <th>Плотность (гр)</th>
@@ -54,6 +55,7 @@
                                 <tbody>
                                     @foreach ($rolls as $roll)
                                         <tr>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $roll->id }}</td>
                                             <td>{{ nf($roll->size) }} cм</td>
                                             <td>{{ nf($roll->paper_weight) }} гр</td>
@@ -84,6 +86,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>Итого</th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                         <th>{{ nf($rolls->sum('weight')) }} кг</th>
