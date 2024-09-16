@@ -43,6 +43,8 @@
                                         <th>Формат</th>
                                         <th>Плотность (гр)</th>
                                         <th>Вес (кг)</th>
+                                        <th>Цена</th>
+                                        <th>Сумма</th>
                                         <th>Клей</th>
                                         <th>Дата</th>
                                         <th>Использован</th>
@@ -56,6 +58,8 @@
                                             <td>{{ nf($roll->size) }} cм</td>
                                             <td>{{ nf($roll->paper_weight) }} гр</td>
                                             <td>{{ nf($roll->weight) }} кг</td>
+                                            <td>{{ nf($roll->price) }}</td>
+                                            <td>{{ nf($roll->total) }}</td>
                                             <td>{{ $roll->glue ? 'Есть' : 'Нет' }}</td>
                                             <td>{{ df($roll->created_at) }}</td>
                                             <td>
@@ -83,6 +87,8 @@
                                         <th></th>
                                         <th></th>
                                         <th>{{ nf($rolls->sum('weight')) }} кг</th>
+                                        <th></th>
+                                        <th>{{ nf($rolls->sum('total')) }}</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
