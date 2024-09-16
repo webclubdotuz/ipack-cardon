@@ -10,7 +10,9 @@ class CardonController extends Controller
     public function index()
     {
 
-        $cardons = Cardon::orderBy('name')->get();
+        $cardons = Cardon::orderBy('name')
+        ->whereNot('id', 37)
+        ->get();
 
         return view('pages.cardons.index', compact('cardons'));
     }
