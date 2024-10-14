@@ -9,6 +9,7 @@ class CreateOrUpdate extends Component
 
     public $id;
     public $fullname;
+    public $org_name;
     public $phone;
     public $type;
     public $address;
@@ -48,6 +49,7 @@ class CreateOrUpdate extends Component
 
         $this->id = $contact->id;
         $this->fullname = $contact->fullname;
+        $this->org_name = $contact->org_name;
         $this->phone = $contact->phone;
         $this->type = $contact->type;
         $this->address = $contact->address;
@@ -63,6 +65,7 @@ class CreateOrUpdate extends Component
         if ($this->method == 'create') {
             \App\Models\Contact::create([
                 'fullname' => $this->fullname,
+                'org_name' => $this->org_name,
                 'phone' => $this->phone,
                 'type' => $this->type,
                 'address' => $this->address,
@@ -72,6 +75,7 @@ class CreateOrUpdate extends Component
 
             $contact->update([
                 'fullname' => $this->fullname,
+                'org_name' => $this->org_name,
                 'phone' => $this->phone,
                 'type' => $this->type,
                 'address' => $this->address,
@@ -92,6 +96,7 @@ class CreateOrUpdate extends Component
 
         $contact->update([
             'fullname' => $this->fullname,
+            'org_name' => $this->org_name,
             'phone' => $this->phone,
             'type' => $this->type,
             'address' => $this->address,

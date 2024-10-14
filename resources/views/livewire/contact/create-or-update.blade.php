@@ -23,6 +23,13 @@
                             @enderror
                         </div>
                         <div class="col-12">
+                            <label for="org_name" class="form-label">Организация</label>
+                            <input type="text" class="form-control" wire:model="org_name" placeholder="ФИО">
+                            @error('org_name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-12">
                             <label for="address" class="form-label">Address</label>
                             <textarea class="form-control" wire:model="address" placeholder="Адрес"></textarea>
                         </div>

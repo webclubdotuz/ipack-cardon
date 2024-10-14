@@ -23,6 +23,15 @@
                             <input type="date" name="end_date" id="end_date" class="form-control"
                                 value="{{ $end_date }}">
                         </div>
+                        <div class="col-md-6">
+                            <label for="product_id">Продукт</label>
+                            <select name="product_id" id="product_id" class="form-control">
+                                <option value="">Все</option>
+                                @foreach (getProducts() as $product)
+                                    <option value="{{ $product->id }}" {{ request()->get('product_id') == $product->id ? 'selected' : '' }}>{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="col-md-12 mt-3">
                             <button type="submit" class="btn btn-primary">Применить</button>
@@ -45,6 +54,7 @@
                                     <th>Цена</th>
                                     <th>Количество</th>
                                     <th>Сумма</th>
+                                    <th>Дата</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,6 +66,7 @@
                                         <td>
                                             {{ nf($product_used->total) }}
                                         </td>
+                                        <td>{{ df($product_used->created_at, 'd.m.Y H:i') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

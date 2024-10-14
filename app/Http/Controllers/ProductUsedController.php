@@ -15,12 +15,16 @@ class ProductUsedController extends Controller
 
         $start_date = $request->start_date ?? date('Y-m-01');
         $end_date = $request->end_date ?? date('Y-m-d');
+        $product_id = $request->product_id ?? '';
 
         $product_useds = ProductUsed::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+            ->when($product_id, function ($query) use ($product_id) {
+                return $query->where('product_id', $product_id);
+            })
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('pages.product-useds.index', compact('product_useds', 'start_date', 'end_date'));
+        return view('pages.product-useds.index', compact('product_useds', 'start_date', 'end_date', 'product_id'));
     }
 
     public function store(Request $request)

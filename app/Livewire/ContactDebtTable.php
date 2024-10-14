@@ -46,6 +46,7 @@ class ContactDebtTable extends DataTableComponent
             ->format(fn($value, $row, $column) => "<a href='".route('contacts.show', $row->id)."'>$value</a>")
             ->html()
             ->searchable(),
+            Column::make("Организация", "org_name")->sortable()->searchable(),
             Column::make("Тел", "phone")->sortable()->searchable(),
             Column::make("Баланс", "id")->format(fn($value, $row, $column) => nf($this->balance($value)))->sortable(),
 
