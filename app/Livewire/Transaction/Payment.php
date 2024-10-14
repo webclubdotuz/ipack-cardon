@@ -3,7 +3,7 @@
 namespace App\Livewire\Transaction;
 
 use App\Models\Transaction;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 

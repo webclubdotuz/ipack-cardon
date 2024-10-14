@@ -11,7 +11,7 @@ class Index extends Component
 
     use LivewireAlert;
 
-    public $start_date, $end_date;
+    public $start_date, $end_date, $contact_id;
 
     protected $listeners = ['refreshSaleIndex' => '$refresh'];
 
@@ -33,6 +33,9 @@ class Index extends Component
 
         $transactions = Transaction::where('type', 'sale')
         ->whereBetween('created_at', [$this->start_date . ' 00:00:00', $this->end_date . ' 23:59:59'])
+        ->when($this->contact_id, function ($query) {
+            return $query->where('contact_id', $this->contact_id);
+        })
         ->where('status', '!=', 'pending')
         ->orderBy('created_at', 'desc')
         ->get();

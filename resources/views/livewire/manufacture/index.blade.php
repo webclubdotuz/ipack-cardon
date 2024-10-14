@@ -9,6 +9,16 @@
                 <label for="end_date">Конец периода</label>
                 <input type="date" class="form-control" id="end_date" wire:model.live="end_date">
             </div>
+            <div class="col-6">
+                <label for="cardon_id">Продукция</label>
+                <select class="form-select" id="cardon_id" wire:model.live="cardon_id">
+                    <option value="">Все</option>
+                    @foreach (getCardons() as $cardon)
+                        <option value="{{ $cardon->id }}">{{ $cardon->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
         </div>
     </div>
     <div class="col-12" wire:loading wire:target="start_date, end_date">

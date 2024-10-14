@@ -133,7 +133,7 @@
                                                 <tr>
                                                     <td>{{ $payment->created_at->format('d.m.Y H:i') }}</td>
                                                     <td>{{ nf($payment->amount) }}</td>
-                                                    <td>{{ $payment->comment }}</td>
+                                                    <td>{{ $payment->description }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

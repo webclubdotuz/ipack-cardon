@@ -9,6 +9,15 @@
                 <label for="end_date">Конец периода</label>
                 <input type="date" class="form-control" id="end_date" wire:model.live="end_date">
             </div>
+            <div class="col-6">
+                <label for="contact_id">Клиент</label>
+                <select class="form-select" id="contact_id" wire:model.live="contact_id">
+                    <option value="">Все</option>
+                    @foreach (getContacts() as $contact)
+                        <option value="{{ $contact->id }}">{{ $contact->fullname }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
     </div>
     <div class="col-12 table-responsive">

@@ -11,7 +11,7 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert;
 
-    public $start_date, $end_date;
+    public $start_date, $end_date, $cardon_id;
 
     public function mount()
     {
@@ -38,6 +38,9 @@ class Index extends Component
     {
 
         $manufactures = Manufacture::whereBetween('created_at', [$this->start_date . ' 00:00:00', $this->end_date . ' 23:59:59'])
+        ->when($this->cardon_id, function ($query) {
+            return $query->where('cardon_id', $this->cardon_id);
+        })
         ->orderBy('created_at', 'desc')
         ->get();
 
