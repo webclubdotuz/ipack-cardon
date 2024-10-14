@@ -18,6 +18,7 @@ class Transaction extends Model
         'total',
         'description',
         'created_at',
+        'tax',
     ];
 
     public function scopeSales($query)

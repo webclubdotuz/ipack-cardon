@@ -36,6 +36,7 @@ class SaleController extends Controller
             'amount' => 'required|numeric',
             'method' => 'required',
             'created_at' => 'nullable|date_format:Y-m-d',
+            'tax' => 'required|numeric|between:0,100',
         ]);
 
         try {
@@ -48,6 +49,7 @@ class SaleController extends Controller
                 'total' => 0,
                 'description' => $request->description,
                 'created_at' => $request->created_at . ' ' . date('H:i:s'),
+                'tax' => $request->tax,
             ]);
 
             foreach ($request->cardons as $cardon) {
@@ -63,8 +65,11 @@ class SaleController extends Controller
                 ]);
             }
 
+            $total = $transaction->sales->sum('total');
+            $tax = $total * $request->tax / 100;
+
             $transaction->update([
-                'total' => $transaction->sales->sum('total'),
+                'total' => $total + $tax,
             ]);
 
             $payment = new PaymentService();

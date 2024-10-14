@@ -60,6 +60,26 @@
                             <a type="button" id="add-product" onclick="return false;" class="text-primary  float-start"><i class="bx bx-plus"></i> Добавить продукт</a>
                             <hr>
                         </div>
+
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="tax">НДС</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" name="tax" id="tax" class="form-control form-control-sm" step="any" required min="0" onkeyup="calculateTotal()" value="0">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="total">Итого</label>
+                                    <input type="text" name="total" id="total" class="form-control form-control-sm money" step="any" required min="0" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="total">Итого с НДС</label>
+                                    <input type="text" name="tax_total" id="tax_total" class="form-control form-control-sm money" step="any" required min="0" readonly>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <label for="contact_id">Клиент</label>
                             <select name="contact_id" id="contact_id" class="form-control form-control-sm" required onchange="getRequest(this.value)">
@@ -157,6 +177,7 @@
         function calculateTotal() {
 
             let count = $('#product-div').find('.product-clone').length;
+            let tax = $('#tax').val();
 
             for (let i = 0; i < count; i++) {
                 let weight = $('#quantity_' + i).val();
@@ -173,6 +194,11 @@
                 total += parseFloat($('#total_' + i).val());
             }
 
+            $('#total').val(total);
+
+            total = total + total * (tax / 100);
+
+            $('#tax_total').val(total);
             $('#amount').val(total);
             $('#amount').attr('max', total);
         }
