@@ -18,6 +18,7 @@
                     <th>ID</th>
                     <th>Клиент</th>
                     <th>Товары</th>
+                    <th>НДС</th>
                     <th>Сумма</th>
                     <th>Оплата стаус</th>
                     <th>Дата</th>
@@ -46,6 +47,7 @@
                                 </div>
                             @endforeach
                         </td>
+                        <td>{{ nf($transaction->tax) }}%</td>
                         <td>{{ nf($transaction->total, 2) }} {{ $transaction->debt_info }}</td>
                         <td>
                             {!! $transaction->payment_status_html !!}
@@ -88,6 +90,7 @@
                     <td>
                         {{ $transactions->map(function($transaction) { return $transaction->sales->sum('quantity'); })->sum() }}
                     </td>
+                    <td></td>
                     <td>{{ nf($transactions->sum('total')) }}</td>
                     <td>
                         Долг: {{ nf($transactions->sum('debt')) }} <br>
