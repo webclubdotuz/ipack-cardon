@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="col-12 table-responsive">
-        <table class="table table-striped table-bordered" id="table">
+        <table class="table table-striped table-bordered" id="sales_table">
             <thead>
                 <tr>
                     <th>ID</th>
