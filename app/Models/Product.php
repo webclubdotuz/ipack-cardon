@@ -56,7 +56,11 @@ class Product extends Model
 
     public function getQuantityAttribute()
     {
-        return $this->purchases->sum('quantity') - $this->product_useds->sum('quantity');
+        // return $this->purchases->sum('quantity') - $this->product_useds->sum('quantity');
+        $purchaseQuantity = round($this->purchases->sum('quantity'), 2);
+        $productUsedQuantity = round($this->product_useds->sum('quantity'), 2);
+
+        return $purchaseQuantity - $productUsedQuantity;
     }
 
 

@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ nf($product->price) }}</td>
-                                        <td>{{ $product->quantity }} {{ $product->unit }}</td>
+                                        <td>{{ $product->quantity }} / {{ $product->unit }}</td>
                                         <td>
                                             <form action="{{ route('products.destroy', $product->id) }}" method="post">
                                                 @csrf
