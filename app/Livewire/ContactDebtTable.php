@@ -48,7 +48,14 @@ class ContactDebtTable extends DataTableComponent
             ->searchable(),
             Column::make("Организация", "org_name")->sortable()->searchable(),
             Column::make("Тел", "phone")->sortable()->searchable(),
-            Column::make("Баланс", "id")->format(fn($value, $row, $column) => nf($this->balance($value)))->sortable(),
+            Column::make("Баланс", "id")->format(fn($value, $row, $column) => nf($this->balance($value)))
+            ->footer(function($model) {
+                if ($this->type == "customer") {
+                    return nf($model->sum('customer_balance'));
+                } elseif ($this->type == "supplier") {
+                    return nf($model->sum('supplier_balance'));
+                }
+            }),
 
             Column::make("Дата", "created_at")->format(fn($value, $row, $column) => df($value, 'd.m.Y H:i'))->sortable(),
             Column::make("Действия", "id")->format(fn($value, $row, $column) => view('pages.contacts.actions', compact('value'))),

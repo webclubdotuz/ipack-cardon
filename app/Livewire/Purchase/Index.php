@@ -53,7 +53,7 @@ class Index extends Component
 
             DB::commit();
 
-            flash('Успешно удалено')->success();
+            flash('Успешно удалено');
 
         } catch (\Throwable $th) {
             //throw $th;

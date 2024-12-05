@@ -18,7 +18,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Получатель</th>
+                    <th>Товары</th>
                     <th>Сумма</th>
+                    <th>Оплата стаус</th>
                     <th>Дата</th>
                     <th></th>
                 </tr>
@@ -28,7 +30,20 @@
                     <tr>
                         <td>{{ $transaction->id }}</td>
                         <td>{{ $transaction->user->fullname }}</td>
+                        <td>
+                            @foreach ($transaction->purchases as $purchase)
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        {{ $purchase->product->name }} ({{ nf($purchase->price) }} cум)
+                                    </div>
+                                    <div>
+                                        {{ nf($purchase->quantity) }} {{ $purchase->product->unit }} | {{ nf($purchase->total) }} cум
+                                    </div>
+                                </div>
+                            @endforeach
+                        </td>
                         <td>{{ nf($transaction->total) }}</td>
+                        <td>{!! $transaction->payment_status_html !!}</td>
                         <td>{{ df($transaction->created_at, 'd.m.Y H:i') }}</td>
                         <td>
                             <div class="dropdown open">
