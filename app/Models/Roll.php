@@ -39,4 +39,14 @@ class Roll extends Model
     {
         return $this->belongsTo(User::class, 'used_user_id');
     }
+
+    public function roll_useds()
+    {
+        return $this->hasMany(RollUsed::class);
+    }
+
+    public function getBalanceAttribute()
+    {
+        return $this->weight - $this->roll_useds()->sum('weight');
+    }
 }

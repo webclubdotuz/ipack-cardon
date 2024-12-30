@@ -55,7 +55,6 @@
                                                     <button type="submit" class="btn  btn-sm btn-danger">
                                                         <i class="bx bx-trash"></i>
                                                     </button>
-
                                                 </div>
                                             </form>
                                         </td>

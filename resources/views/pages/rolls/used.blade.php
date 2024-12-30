@@ -47,9 +47,9 @@
                                         <th>Цена</th>
                                         <th>Сумма</th>
                                         <th>Клей</th>
+                                        <th>Использован</th>
                                         <th>Дата</th>
                                         <th>Использован</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,22 +63,26 @@
                                             <td>{{ nf($roll->price) }}</td>
                                             <td>{{ nf($roll->total) }}</td>
                                             <td>{{ $roll->glue ? 'Есть' : 'Нет' }}</td>
+                                            <td>
+                                                @foreach ($roll->roll_useds as $used)
+                                                    <p>
+                                                        {{ $used->weight }} кг
+                                                        <small>{{ $used->description }} | {{ $used->date }}</small>
+                                                        <form action="{{ route('rolls.destroy-used', $used->id) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены? Рулон не будет использован!')">
+                                                                <i class="bx bx-undo"></i>
+                                                            </button>
+                                                        </form>
+                                                    </p>
+                                                @endforeach
+                                            </td>
                                             <td>{{ df($roll->created_at) }}</td>
                                             <td>
                                                 Дата: {{ df($roll->used_date) }} <br>
                                                 Описание: {{ $roll->used_description }} <br>
                                                 Пользователь: {{ $roll->used_user->fullname }}
-
-
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('rolls.destroy-used', $roll->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены? Рулон не будет использован!')">
-                                                        <i class="bx bx-undo"></i>
-                                                    </button>
-                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\Roll;
+use App\Models\RollUsed;
 use App\Models\Transaction;
 use App\Services\TelegramService;
 use Illuminate\Http\Request;
@@ -26,8 +27,8 @@ class RollController extends Controller
         $end_date = $request->end_date ?? date('Y-m-d');
 
         $rolls = Roll::orderBy('created_at', 'desc')
-        ->whereBetween('used_date', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
-        ->where('used', true)->get();
+            ->whereBetween('used_date', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+            ->where('used', true)->get();
 
         return view('pages.rolls.used', compact('rolls', 'start_date', 'end_date'));
     }
@@ -99,7 +100,7 @@ class RollController extends Controller
                     'method' => $request->method,
                     'created_at' => $request->created_at . ' ' . date('H:i:s'),
                 ]);
-            }elseif ($request->amount > 0 && $request->amount < $transaction->total) {
+            } elseif ($request->amount > 0 && $request->amount < $transaction->total) {
                 $transaction->update([
                     'payment_status' => 'debt',
                 ]);
@@ -115,34 +116,6 @@ class RollController extends Controller
             }
 
             DB::commit();
-
-
-            // 🔔🔔🔔🔔🔔🔔
-            // 📥Покупки
-            // 🙎🏻‍♂️ Поставщик : Обертачный цех
-            // 📱 Телефон: 930579343
-            // 📦Товары: Рулон 118 см / 135 гр / 585 кг
-            // 💲Цена: 5,000
-            // 💰 Сумма 2,925,000
-            // ____________________
-            // 📦Товары: Рулон 118 см / 135 гр / 578 кг
-            // 💲Цена: 5,000
-            // 💰 Сумма 2,890,000
-            // ____________________
-            // 📦Товары: Рулон 118 см / 135 гр / 549 кг
-            // 💲Цена: 5,000
-            // 💰 Сумма 2,745,000
-            // ____________________
-            // 📦Товары: Рулон 118 см / 135 гр / 549 кг
-            // 💲Цена: 5,000
-            // 💰 Сумма 2,745,000
-            // ____________________
-            // 💰 Общий сумма: 11,305,000
-            // 💰 Оплачено: 11,305,000
-            // ❗️ Остаток: 0
-            // 📅 Дата: 26 Apr 2024 15:06
-            // 👨‍💻 Сотрудник: Улугбек
-
 
             $message = "🔔🔔🔔🔔🔔🔔\n";
             $message .= "📥Покупки\n";
@@ -173,12 +146,12 @@ class RollController extends Controller
 
             return redirect()->back()->with('error', 'Something went wrong.' . $e->getMessage());
         }
-
     }
 
     public function storeUsed(Request $request)
     {
         $request->validate([
+            'used_weight' => 'required|numeric',
             'roll_id' => 'required|exists:rolls,id',
             'used_date' => 'required|date',
         ]);
@@ -189,24 +162,54 @@ class RollController extends Controller
             return redirect()->back()->with('error', 'Этот рулон уже использован.');
         }
 
-        $roll->update([
-            'used' => true,
-            'used_date' => $request->used_date,
-            'used_description' => $request->used_description,
-            'used_user_id' => auth()->user()->id,
-        ]);
+        if ($request->used_weight > $roll->balance) {
+            return redirect()->back()->with('error', 'Вес использованного рулона больше остатка.');
+        }
 
-        return redirect()->back()->with('success', 'Успешно использовано.');
+        DB::beginTransaction();
+        try {
+            $roll->roll_useds()->create([
+                'user_id' => auth()->user()->id,
+                'weight' => $request->used_weight,
+                'description' => $request->used_description,
+                'date' => $request->used_date,
+            ]);
+
+            $roll->refresh();
+
+            if ($roll->balance == 0) {
+                $roll->update([
+                    'used' => true,
+                    'used_date' => $request->used_date,
+                    'used_description' => $request->used_description,
+                    'used_user_id' => auth()->user()->id,
+                ]);
+            }
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Успешно использовано.');
+        } catch (\Throwable $th) {
+            //throw $th;
+            DB::rollback();
+            dd($th->getMessage());
+        }
     }
 
-    public function destroyUsed(Roll $roll)
+    public function destroyUsed(RollUsed $roll)
     {
-        $roll->update([
+
+        $rollUsed = $roll;
+
+        $rollUsed->roll->update([
             'used' => false,
             'used_date' => null,
             'used_description' => null,
             'used_user_id' => null,
         ]);
+
+        $rollUsed->delete();
+
 
         return redirect()->back()->with('success', 'Успешно удалено.');
     }

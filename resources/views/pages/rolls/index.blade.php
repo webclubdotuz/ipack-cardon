@@ -25,7 +25,11 @@
                                         <th>Формат</th>
                                         <th>Плотность (гр)</th>
                                         <th>Вес (кг)</th>
+                                        <th>Остаток (кг)</th>
                                         <th>Клей</th>
+                                        <th>
+                                            Использовать
+                                        </th>
                                         <th>Дата</th>
                                         <th></th>
                                     </tr>
@@ -37,10 +41,26 @@
                                             <td>{{ nf($roll->size) }} cм</td>
                                             <td>{{ nf($roll->paper_weight) }} гр</td>
                                             <td>{{ nf($roll->weight) }} кг</td>
+                                            <td>{{ nf($roll->balance) }} кг</td>
                                             <td>{{ $roll->glue ? 'Есть' : 'Нет' }}</td>
+                                            <td>
+                                                @foreach ($roll->roll_useds as $used)
+                                                    <p>
+                                                        {{ $used->weight }} кг
+                                                        <small>{{ $used->date }}</small>
+                                                        <form action="{{ route('rolls.destroy-used', $used->id) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены? Рулон не будет использован!')">
+                                                                <i class="bx bx-undo"></i>
+                                                            </button>
+                                                        </form>
+                                                    </p>
+                                                @endforeach
+                                            </td>
                                             <td>{{ $roll->created_at }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-primary" onclick="initRoll({{ $roll->id }}, {{ $roll->size }}, {{ $roll->paper_weight }}, {{ $roll->weight }}, {{ $roll->glue }})">
+                                                <button type="button" class="btn btn-sm btn-primary" onclick="initRoll({{ $roll->id }}, {{ $roll->size }}, {{ $roll->paper_weight }}, {{ $roll->weight }}, {{ $roll->glue }}, {{ $roll->balance }})">
                                                     <i class="bx bx-check"></i>
                                                     Использовать
                                                 </button>
@@ -54,7 +74,9 @@
                                         <th></th>
                                         <th></th>
                                         <th>{{ nf($rolls->sum('weight')) }} кг</th>
-                                        <th></th>
+                                        <th>
+                                            {{ nf($rolls->sum('balance')) }} кг
+                                        </th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -84,6 +106,7 @@
                                 Плотность: <span id="roll-paper-weight"></span> <br>
                                 Вес: <span id="roll-weight"></span> <br>
                                 Клей: <span id="roll-glue"></span> <br>
+                                Остаток: <span id="roll-balance"></span> <br>
                             </p>
                         </div>
                         <div class="col-6">
@@ -91,8 +114,12 @@
                                 @csrf
                                 <div class="row g-3">
                                     <div class="col-12">
+                                        <label for="used_weight">Использованный вес (кг)</label>
+                                        <input type="number" name="used_weight" id="used_weight" class="form-control form-control-sm" required step="0.01" min="0.01">
+                                    </div>
+                                    <div class="col-12">
                                         <label for="used_description">Описание</label>
-                                        <textarea name="used_description" id="used_description" class="form-control form-control-sm" rows="3" required></textarea>
+                                        <textarea name="used_description" id="used_description" class="form-control form-control-sm" rows="3"></textarea>
                                     </div>
                                     <div class="col-12">
                                         <label for="used_date">Дата</label>
@@ -116,12 +143,14 @@
 @push('js')
 <script>
 
-    function initRoll(id, size, paperWeight, weight, glue) {
+    function initRoll(id, size, paperWeight, weight, glue, balance)
+    {
         $('#roll-id').text(id);
         $('#roll-size').text(size);
         $('#roll-paper-weight').text(paperWeight);
         $('#roll-weight').text(weight);
         $('#roll-glue').text(glue);
+        $('#roll-balance').text(balance);
         $('#roll_id').val(id);
 
         $('#usedModal').modal('show');
