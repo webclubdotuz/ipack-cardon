@@ -34,6 +34,8 @@
 					<th>Создатель</th>
 					<th>Товары</th>
 					<th>Количество</th>
+                    <th>Цена</th>
+                    <th>Сумма</th>
 					<th>Описание</th>
 					<th>Дата</th>
                     <th></th>
@@ -54,6 +56,8 @@
                             </a>
                         </td>
 						<td>{{ nf($manufacture->quantity) }} {{ $manufacture->cardon->unit }}</td>
+                        <td>{{ nf($manufacture->cardon->price) }} cум</td>
+                        <td>{{ nf($manufacture->quantity * $manufacture->cardon->price) }} cум</td>
                         <td>
                             {{ $manufacture->description }}
                         </td>
@@ -72,6 +76,12 @@
                     <th></th>
                     <th></th>
                     <th>{{ nf($manufactures->sum('quantity')) }}</th>
+                    <th></th>
+                    <th>
+                        {{ nf($manufactures->sum(function($manufacture) {
+                            return $manufacture->quantity * $manufacture->cardon->price;
+                        })) }} cум
+                    </th>
                     <th></th>
                     <th></th>
                     <th></th>

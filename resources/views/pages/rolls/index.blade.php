@@ -17,6 +17,9 @@
                         <div class="col-12">
                             <x-alert />
                         </div>
+                        <div class="col-12">
+
+                        </div>
                         <div class="col-12 table-responsive">
                             <table class="table table-striped table-bordered" id="table">
                                 <thead>
@@ -46,7 +49,7 @@
                                             <td>
                                                 @foreach ($roll->roll_useds as $used)
                                                     <p>
-                                                        {{ $used->weight }} кг
+                                                        {{ nf($used->weight, 0) }} кг
                                                         <small>{{ $used->date }}</small>
                                                         <form action="{{ route('rolls.destroy-used', $used->id) }}" method="post">
                                                             @csrf
