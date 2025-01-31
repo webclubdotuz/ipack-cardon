@@ -42,6 +42,7 @@
                 <x-tab.nav>
                     <x-tab.li :id="'purchases'" :title="'Покупки'" :active="true" :icon="'bx bx-shopping-bag'"/>
                     <x-tab.li :id="'sales'" :title="'Продажи'" :icon="'bx bx-cart'"/>
+                    <x-tab.li :id="'sale_payments'" :title="'Продажи оплата'" :icon="'bx bx-money'"/>
                 </x-tab.nav>
 
                 <div class="tab-content py-3">
@@ -50,6 +51,9 @@
                     </x-tab.content>
                     <x-tab.content :id="'sales'">
                         @livewire('contact.sale', ['contact' => $contact])
+                    </x-tab.content>
+                    <x-tab.content :id="'sale_payments'">
+                        @livewire('payment.payment-list', ['contact' => $contact])
                     </x-tab.content>
                 </div>
             </div>
