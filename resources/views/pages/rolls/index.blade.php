@@ -45,7 +45,7 @@
                                             <td>{{ nf($roll->paper_weight) }} гр</td>
                                             <td>{{ nf($roll->weight) }} кг</td>
                                             <td>{{ nf($roll->balance) }} кг</td>
-                                            <td>{{ $roll->glue ? 'Есть' : 'Нет' }}</td>
+                                            <td>{{ glues()[$roll->glue] }}</td>
                                             <td>
                                                 @foreach ($roll->roll_useds as $used)
                                                     <p>

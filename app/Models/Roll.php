@@ -49,4 +49,23 @@ class Roll extends Model
     {
         return $this->weight - $this->roll_useds()->sum('weight');
     }
+
+    // glue name
+    public function getGlueNameAttribute()
+    {
+        // белы, крашный,
+        // 0-нет, 1-есть, 2-белы, 3-крашный
+        $glue = [
+            0 => 'нет',
+            1 => 'есть',
+            2 => 'белы',
+            3 => 'крашный',
+        ];
+
+        if (isset($glue[$this->glue])) {
+            return $glue[$this->glue];
+        }else {
+            return '...';
+        }
+    }
 }

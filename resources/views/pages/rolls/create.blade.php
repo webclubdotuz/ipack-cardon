@@ -47,8 +47,9 @@
                                     <label for="glue_0">Клей</label>
                                     <select name="rolls[][glue]" id="glue_0" class="form-control form-control-sm" required>
                                         <option value="">Выберите клей</option>
-                                        <option value="1">Есть</option>
-                                        <option value="0">Нет</option>
+                                        @foreach (glues() as $key=>$glue)
+                                            <option value="{{ $key }}">{{ $glue }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-12">

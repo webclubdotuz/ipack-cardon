@@ -47,7 +47,7 @@ class RollController extends Controller
             'rolls.*.size' => 'required|numeric',
             'rolls.*.weight' => 'required|numeric',
             'rolls.*.paper_weight' => 'required|numeric',
-            'rolls.*.glue' => 'required|boolean',
+            'rolls.*.glue' => 'required',
             'rolls.*.price' => 'required|numeric',
             'contact_id' => 'required|exists:contacts,id',
             'amount' => 'required|numeric',
