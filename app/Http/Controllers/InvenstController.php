@@ -16,7 +16,7 @@ class InvenstController extends Controller
         $end_date = $request->end_date ?? date('Y-m-d');
         $method = $request->method ?? '';
 
-        $invensts = Invenst::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+        $invensts = Invenst::whereBetween('date', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
         ->when($method, function ($query, $method) {
             return $query->where('method', $method);
         })

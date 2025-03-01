@@ -41,8 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/used', [\App\Http\Controllers\RollController::class, 'used'])->name('used');
         Route::post('/used', [\App\Http\Controllers\RollController::class, 'storeUsed'])->name('store-used');
         Route::delete('/used/{roll}', [\App\Http\Controllers\RollController::class, 'destroyUsed'])->name('destroy-used');
-
-
     });
 
 
