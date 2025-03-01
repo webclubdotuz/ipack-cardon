@@ -30,6 +30,8 @@
                                         <th>Вес (кг)</th>
                                         <th>Остаток (кг)</th>
                                         <th>Клей</th>
+                                        <th>Цена</th>
+                                        <th>Сумма</th>
                                         <th>
                                             Использовать
                                         </th>
@@ -46,6 +48,8 @@
                                             <td>{{ nf($roll->weight) }} кг</td>
                                             <td>{{ nf($roll->balance) }} кг</td>
                                             <td>{{ glues()[$roll->glue] }}</td>
+                                            <td>{{ nf($roll->price) }} сум</td>
+                                            <td>{{ nf($roll->price * $roll->balance) }} сум</td>
                                             <td>
                                                 @foreach ($roll->roll_useds as $used)
                                                     <p>
@@ -80,6 +84,18 @@
                                         <th>
                                             {{ nf($rolls->sum('balance')) }} кг
                                         </th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>
+                                            <?php
+                                                $total = 0;
+                                                foreach ($rolls as $roll) {
+                                                    $total += $roll->price * $roll->balance;
+                                                }
+                                            ?>
+                                            {{ nf($total) }} сум
+                                        </th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                     </tr>
