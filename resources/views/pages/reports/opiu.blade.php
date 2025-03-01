@@ -88,7 +88,7 @@
                                         @foreach ($transactionMonths as $transactionMonth)
                                             <td>
                                                 @if (getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) > 0)
-                                                    {{ nf((getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) - getUserRolls($selected_year, $transactionMonth->month) - getUsedProducts($selected_year, $transactionMonth->month) - getExpensesYM($selected_year, $transactionMonth->month, null)) * 100 / getTransactionsTotal($selected_year, $transactionMonth->month, ['sale'])) }}
+                                                    {{ nf((getTransactionsTotal($selected_year, $transactionMonth->month, ['sale']) - getUserRolls($selected_year, $transactionMonth->month) - getUsedProducts($selected_year, $transactionMonth->month) - getExpensesYM($selected_year, $transactionMonth->month, null)) * 100 / getTransactionsTotal($selected_year, $transactionMonth->month, ['sale'])) }} %
                                                 @endif
                                             </td>
                                         @endforeach
