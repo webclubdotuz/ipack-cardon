@@ -45,9 +45,12 @@ class Contact extends Model
     {
         $total = 0;
 
-        $transactions = Transaction::where('contact_id', $this->id)->where('type', 'purchase')->sum('total');
+        $transactions = Transaction::where('contact_id', $this->id)
+        ->whereIn('type', ['purchase', 'roll'])
+        ->sum('total');
+
         $payments = Payment::where('contact_id', $this->id)->whereHas('transaction', function ($query) {
-            $query->where('type', 'purchase')->where('status', 'completed')->where('contact_id', $this->id);
+            $query->whereIn('type', ['purchase', 'roll'])->where('status', 'completed')->where('contact_id', $this->id);
         })->sum('amount');
 
         $total = $transactions - $payments;

@@ -23,7 +23,7 @@ class ContactDebtTable extends DataTableComponent
             });
         } elseif ($this->type == "supplier") {
             return Contact::whereIn('type', ['supplier', 'both'])->whereHas('transactions', function ($query) {
-                $query->where('type', 'purchase')->where('payment_status', 'debt');
+                $query->whereIn('type', ['purchase', 'roll'])->where('payment_status', 'debt');
             });
         }
     }
