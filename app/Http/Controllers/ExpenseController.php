@@ -40,8 +40,11 @@ class ExpenseController extends Controller
             'to_user_id' => 'nullable|exists:users,id', // 'nullable|exists:users,id
             'amount' => 'required|numeric',
             'description' => 'nullable|string',
+            'method' => 'required|string',
             'created_at' => 'nullable|date_format:Y-m-d',
         ]);
+
+        // dd($request->all());
 
         Expense::create([
             'expense_category_id' => $request->expense_category_id,
@@ -49,6 +52,7 @@ class ExpenseController extends Controller
             'to_user_id' => $request->to_user_id,
             'amount' => $request->amount,
             'description' => $request->description,
+            'method' => $request->method,
             'created_at' => $request->created_at . ' ' . date('H:i:s'),
         ]);
 
@@ -67,6 +71,7 @@ class ExpenseController extends Controller
             'to_user_id' => 'nullable|exists:users,id', // 'nullable|exists:users,id
             'amount' => 'required|numeric',
             'description' => 'nullable|string',
+            'method' => 'required|string',
             'created_at' => 'nullable|date_format:Y-m-d',
         ]);
 
@@ -76,6 +81,7 @@ class ExpenseController extends Controller
             'user_id' => auth()->user()->id,
             'to_user_id' => $request->to_user_id,
             'amount' => $request->amount,
+            'method' => $request->method,
             'description' => $request->description,
             'created_at' => $request->created_at . ' ' . date('H:i:s'),
         ]);
