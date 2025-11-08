@@ -39,6 +39,17 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col-md-4">
+                            <label for="contact_id">Клиент/Поставщик</label>
+                            <select name="contact_id" id="contact_id" class="form-control select2">
+                                <option value="">Все</option>
+                                @foreach (getContacts() as $contact)
+                                    <option value="{{ $contact->id }}"
+                                        {{ $contact_id == $contact->id ? 'selected' : '' }}>
+                                        {{ $contact->fullname }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary">Фильтр <i class="bx bx-filter-alt"></i></button>
                             <a href="{{ route('payments.index') }}" class="btn btn-danger">Сбросить <i

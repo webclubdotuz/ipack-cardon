@@ -15,11 +15,17 @@ class PaymentController extends Controller
         $end_date = $request->end_date ?? date('Y-m-d');
         $type = $request->type ?? '';
         $method = $request->method ?? '';
+        $contact_id = $request->contact_id ?? '';
 
         $payments = Payment::whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
             ->when($type, function ($query, $type) {
                 return $query->whereHas('transaction', function ($query) use ($type) {
                     $query->where('type', $type);
+                });
+            })
+            ->when($contact_id, function ($query, $contact_id) {
+                return $query->whereHas('transaction', function ($query) use ($contact_id) {
+                    $query->where('contact_id', $contact_id);
                 });
             })
             ->when($method, function ($query, $method) {
@@ -29,7 +35,7 @@ class PaymentController extends Controller
 
 
 
-        return view('pages.payments.index', compact('payments', 'start_date', 'end_date', 'type', 'method'));
+        return view('pages.payments.index', compact('payments', 'start_date', 'end_date', 'type', 'method', 'contact_id'));
     }
 
     public function edit(Payment $payment)
