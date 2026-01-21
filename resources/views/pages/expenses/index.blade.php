@@ -30,6 +30,15 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="col-md-4">
+                        <label for="method">Тип оплаты</label>
+                        <select name="method" id="method" class="form-control">
+                            <option value="">Выберите</option>
+                            @foreach (methods() as $key => $method)
+                            <option value="{{ $key }}" {{ request()->get('method') == $key ? 'selected' : '' }}>{{ $method }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Фильтр <i class="bx bx-filter-alt"></i></button>
                         <a href="{{ route('expenses.index') }}" class="btn btn-danger">Сбросить <i class="bx bx-reset"></i></a>
