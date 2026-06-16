@@ -27,7 +27,7 @@
                                 <div class="row g-2">
                                     <div class="col-6">
                                         <label>Оплата (максимум: {{ $transaction->debt }})</label>
-                                        <input type="number" class="form-control" wire:model="amount" max="{{ $transaction->debt }}">
+                                        <input type="number" step="any" class="form-control" wire:model="amount" max="{{ $transaction->debt }}">
                                     </div>
                                     <div class="col-6">
                                         <label>Тип оплаты</label>
