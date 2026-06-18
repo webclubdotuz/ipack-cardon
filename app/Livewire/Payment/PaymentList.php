@@ -59,7 +59,18 @@ class PaymentList extends DataTableComponent
             Column::make("Дата", "created_at")
                 ->sortable()
                 ->format(fn($value) => df($value)),
+            Column::make("Действия", "id")
+                ->format(fn($value) => "<button type='button' class='btn btn-sm btn-danger' wire:click=\"delete($value)\" wire:confirm='Вы уверены?'><i class='bx bx-trash'></i></button>")
+                ->html(),
         ];
+    }
+
+    public function delete($id)
+    {
+        $payment = Payment::find($id);
+        if ($payment) {
+            $payment->delete();
+        }
     }
 
     public function filters(): array
